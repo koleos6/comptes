@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+    <id>comptes</id>
+    <name>Comptes</name>
+    <description>Plugin qui ajoute le suivi de comptes bancaires à Jeedom (manuel)</description>
+    <icon>fa plugin-comptes-money-pig</icon>
+    <licence>AGPL</licence>
+    <author>Koleos</author>
+    <installation>Aucune</installation>
+    <require>1.167</require>
+	<version>0.20</version>
+    <category>Panel</category>
+	<display>panel</display>
+</info>
+
