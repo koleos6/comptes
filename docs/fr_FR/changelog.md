@@ -1,3 +1,6 @@
+# xx/xx/2018 - V1.2
+- Mise à jour de la documentation
+
 # 29/07/2018 - V1.1
 
 - Ajout de la documentation (en cours)
