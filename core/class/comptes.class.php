@@ -838,7 +838,26 @@ class comptes_operations {
 			$res[$i]['color'] = utils::getJsonAttr($exec['color'], 'tagColor', '');
 			$i++;
 		}
-		return $res;
+        
+        $tab_en_ordre = 0;
+        $taille=$i - 1 ;
+        $res2 = $res;
+        while(!$tab_en_ordre) {
+            $tab_en_ordre = 1;
+            for($i=0 ; $i < $taille -1; $i++){
+                if($res2[$i]['color'] > $res2[$i+1]['color']) {
+                    $temp = $res2[$i];
+                    $res2[$i] = $res2[$i+1];
+                    $res2[$i+1] = $temp;
+
+                    $tab_en_ordre = 0;
+                }
+            }
+            $taille--;
+        }
+        
+        
+		return $res2;
 	}
 	
 	public function getRecettesDuMois($_BankId,$_date = '', $optPointage='0') {
@@ -868,7 +887,26 @@ class comptes_operations {
 			$res[$i]['color'] = utils::getJsonAttr($exec['color'], 'tagColor', '');
 			$i++;
 		}
-		return $res;
+        
+        $tab_en_ordre = 0;
+        $taille=$i - 1 ;
+        $res2 = $res;
+        while(!$tab_en_ordre) {
+            $tab_en_ordre = 1;
+            for($i=0 ; $i < $taille -1; $i++){
+                if($res2[$i]['color'] > $res2[$i+1]['color']) {
+                    $temp = $res2[$i];
+                    $res2[$i] = $res2[$i+1];
+                    $res2[$i+1] = $temp;
+
+                    $tab_en_ordre = 0;
+                }
+            }
+            $taille--;
+        }
+        
+        
+		return $res2;
 	}
 	
 	public function getDepensesRecettesDuMois($_BankId,$_date = '', $optPointage='0') {
