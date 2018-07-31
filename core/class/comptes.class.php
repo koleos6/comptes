@@ -839,6 +839,8 @@ class comptes_operations {
 			$i++;
 		}
         
+        //Tri à bulle des datas pour les regrouper par couleur (même groupement de catégorie)
+        
         $tab_en_ordre = 0;
         $taille=$i - 1 ;
         $res2 = $res;
@@ -887,6 +889,8 @@ class comptes_operations {
 			$res[$i]['color'] = utils::getJsonAttr($exec['color'], 'tagColor', '');
 			$i++;
 		}
+        
+        //Tri à bulle des datas pour les regrouper par couleur (même groupement de catégorie)
         
         $tab_en_ordre = 0;
         $taille=$i - 1 ;
