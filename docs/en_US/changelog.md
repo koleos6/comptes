@@ -1,5 +1,5 @@
-# xx/xx/2018 - V1.2
-- Mise à jour de la documentation
+# 31/07/2018 - V1.2 (en cours)
+- Tri sur le graphique pour grouper par catégories de même couleur. 
 
 
 # 29/07/2018 - V1.1
