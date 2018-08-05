@@ -965,10 +965,24 @@ class comptes_operations {
         return DB::Prepare($sql, array(), DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
     }
 	
-	public function getOperations_debut($_id, $Apointer, $pointer) {
+	public function getOperations_debut($_id) {
 		$values = array(
             'id' => $_id
             );
+            
+        $compte = comptes::byId($_id);   
+        
+        $OptionPointage = $compte->getConfiguration('ActivationPointage');   
+        
+        if ($OptionPointage) {
+            $Apointer = $compte->getConfiguration('AffAPointer');
+            $pointer = $compte->getConfiguration('AffPointees');
+        }else {//Toutes les opérations sont souhaitées car l'option est désactivée: 
+            $Apointer = 1;
+            $pointer = 1;
+        }
+            
+            
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM comptes_operations
         WHERE eqLogic_id=:id ';
@@ -990,11 +1004,26 @@ class comptes_operations {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public function getOperations_suite($_BankId, $_Last_id, $Apointer , $pointer) {
+	public function getOperations_suite($_BankId, $_Last_id) {
 		 $values = array(
             'id' => $_BankId,
 			'lastid' => $_Last_id
             );
+            
+        $compte = comptes::byId($_BankId);   
+        
+        $OptionPointage = $compte->getConfiguration('ActivationPointage');   
+        
+        if ($OptionPointage) {
+            $Apointer = $compte->getConfiguration('AffAPointer');
+            $pointer = $compte->getConfiguration('AffPointees');
+        }else {//Toutes les opérations sont souhaitées car l'option est désactivée: 
+            $Apointer = 1;
+            $pointer = 1;
+        }
+        
+        
+            
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM comptes_operations
         WHERE eqLogic_id = :id AND `id` < :lastid ';

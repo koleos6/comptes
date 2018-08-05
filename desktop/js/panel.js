@@ -17,9 +17,6 @@
  
 var temp_new_op = 0;
 
-var bt_APointer;
-var bt_Pointer;
-
 var new_load = 0;
 
 
@@ -194,37 +191,6 @@ $('.bt_ManageCat').on('click', function () {
 
 });
 
-/* Anciennes fonction dispo a la fois dans la configuration et sur la page d'un compte: 
-A recoder autrement ?
-function bsIsEnableYes_Apointer () {
-	$('#bsIsEnableNo_Apointer').removeClass("btn-danger");
-	$('#bsIsEnableYes_Apointer').addClass("btn-danger");
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').val('0');
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').prop('checked', false);
-}
-
-function bsIsEnableNo_Apointer() {
-	$('#bsIsEnableYes_Apointer').removeClass("btn-danger");
-	$('#bsIsEnableNo_Apointer').addClass("btn-danger");
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').val('1');
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').prop('checked', true);
-}
-
-function bsIsEnableYes_Pointer() {
-	$('#bsIsEnableNo_Pointer').removeClass("btn-success");
-	$('#bsIsEnableYes_Pointer').addClass("btn-success");
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').val('1');
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').prop('checked', true);
-}
-
-function bsIsEnableNo_Pointer() {
-	$('#bsIsEnableYes_Pointer').removeClass("btn-success");
-	$('#bsIsEnableNo_Pointer').addClass("btn-success");
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').val('0');
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').prop('checked', false);
-}
-*/
-
 $('.active_account').on('click', function (event) {
 
 	$('.itemAccount[data-eqLogic_id=' + $(this).attr('data-eqLogic_id') + ']').click();
@@ -358,11 +324,6 @@ $('.itemAccount').on('click', function (event) {
 	}
 	$('.btn-group').show();
 
-	
-	bt_APointer = $(this).attr('data-bt_APointer');
-	bt_Pointer = $(this).attr('data-bt_Pointer');
-
-    
     //Options: 
     var optionPointage = $(this).attr('data-optPointage');
     if (optionPointage == 1) {
@@ -372,9 +333,6 @@ $('.itemAccount').on('click', function (event) {
     }else {
         $('#NewOpOptionPointage').hide();
          $('#FinDeMoisAffichage').hide();
-        //Toutes les opérations sont souhaitées car l'option est désactivée: 
-        bt_APointer = 1; 
-        bt_Pointer =  1;
     }
     
     var optionType = $(this).attr('data-optType');
@@ -406,8 +364,6 @@ $('.itemAccount').on('click', function (event) {
 	operations_print({
         type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
         id: $(this).attr('data-eqLogic_id'),
-		APointer: bt_APointer, 
-		Pointer: bt_Pointer,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -1217,9 +1173,7 @@ $('#comptes_operations').scroll(function(e){
 				action: 'getBankOperations_suite',
 				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
 				id: $('#comptes_operations').attr('data-eqLogic_id'),
-				last_id: lastOpDisplayed,
-				APointer: bt_APointer, 
-				Pointer: bt_Pointer
+				last_id: lastOpDisplayed
 			},
 			dataType: 'json',
 			error: function (request, status, error) {
@@ -1259,9 +1213,7 @@ operations_print = function (_params) {
     paramsAJAX.data = {
         action: 'getBankOperations',
         type: _params.type,
-        id: _params.id,
-		APointer: _params.APointer,
-		Pointer: _params.Pointer
+        id: _params.id
     };
     $.ajax(paramsAJAX);
 }
@@ -1315,43 +1267,6 @@ function addNewOpToTable(bank_id) {
 	var tr = $('#table_op tbody tr:last');
 }
 
-/*
-
-$('#bsIsEnableYes_Apointer').click(function () {
-	if ($('#bsIsEnableYes_Apointer').hasClass('btn-danger'))
-        return;
-    bsIsEnableYes_Apointer();
-	
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_APointer',0);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-	//ajouter ici l'ajax pour sauvegarde dans eqLogic
-});
-
-$('#bsIsEnableNo_Apointer').click(function () {
-	if ($('#bsIsEnableNo_Apointer').hasClass('btn-danger'))
-        return;
-    bsIsEnableNo_Apointer();
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_APointer',1);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-});
-
-$('#bsIsEnableYes_Pointer').click(function () {
-	if ($('#bsIsEnableYes_Pointer').hasClass('btn-success'))
-        return;
-    bsIsEnableYes_Pointer();
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_Pointer',1);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-});
-
-$('#bsIsEnableNo_Pointer').click(function () {
-	if ($('#bsIsEnableNo_Pointer').hasClass('btn-success'))
-        return;
-    bsIsEnableNo_Pointer();
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_Pointer',0);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-});
-
-*/
 /* Partie Gestion catégories */
 	function catSetOrder(_params) {
 		var paramsRequired = ['categories'];

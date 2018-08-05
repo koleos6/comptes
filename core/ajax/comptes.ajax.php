@@ -87,7 +87,7 @@ try {
 		
         $return = utils::o2a($eqLogic);
 		$return['eqLogic_id'] = init('id');
-        $return['op'] = utils::o2a(comptes_operations::getOperations_debut(init('id'),init('APointer'),init('Pointer')));
+        $return['op'] = utils::o2a(comptes_operations::getOperations_debut(init('id')));
 		//$return['op'] = utils::o2a($eqLogic->getOperations());
 		$return['cat'] = utils::o2a(comptes_categories::all());
         //log::add('comptes', 'debug', 'test 0');
@@ -110,7 +110,7 @@ try {
 		
         $return = utils::o2a($eqLogic);
 		$return['eqLogic_id'] = init('id');
-        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id'),init('APointer'),init('Pointer')));
+        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id')));
 		$return['cat'] = utils::o2a(comptes_categories::all());
         $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
         $return['optType'] = $eqLogic->getConfiguration('ActivationTypeOperation');
