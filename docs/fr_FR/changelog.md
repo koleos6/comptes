@@ -1,7 +1,7 @@
-# xx/xx/2018 - V1.2 beta
-- 31/07/2018 : Tri sur le graphique pour grouper par catégories de même couleur. 
-- 05/08/2018 : Ajout fonction de filtre partie 1
-- xx/xx/2018 : Simplification du code
+# 05/08/2018 - V1.2
+- Tri sur le graphique pour grouper par catégories de même couleur. 
+- Ajout fonction de filtre sur une catégorie
+- Simplification du code
 
 # 29/07/2018 - V1.1
 
