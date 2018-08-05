@@ -11,7 +11,8 @@
 	margin-bottom : 10px;
 	padding : 5px;
 	border-radius: 4px;
-	width : 535px;
+	min-width : 535px;
+    width : Auto;
 	margin-left : 10px;
 	
 }
@@ -21,7 +22,8 @@
 	position:absolute;
 	margin-left:10px;
 	margin-top:-9px;
-	width:535px;
+    min-width : 535px;
+    width : Auto;
 	height:Auto;
 	z-index:20;
 	background-color:#f8f8f8;  
