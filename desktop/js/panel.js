@@ -192,23 +192,6 @@ $('.bt_ManageCat').on('click', function () {
 	$('.itemAccount').removeClass('active');
 	$('.btn-group').hide();
 
-/*
-	$('#md_modalComptes2').dialog({
-		autoOpen: false,
-		modal: true,
-		height: 750,
-		width: 900,
-		title: "{{Gestion des catégories}}"
-	});
-	var op_id = $(this).attr('data-op_id');
-	$('#md_modalComptes2').load('index.php?v=d&plugin=comptes&modal=GestionCategories');
-	$("#md_modalComptes2").dialog('option', 'buttons', {
-		"{{Fermer}}": function() {
-			$(this).dialog("close");
-		}
-	});
-	$('#md_modalComptes2').dialog('open');
-*/	
 });
 
 /* Anciennes fonction dispo a la fois dans la configuration et sur la page d'un compte: 
@@ -252,8 +235,6 @@ $('.active_account').on('click', function (event) {
 //modification de la catégorie d'une opération
 $(".li_cat").on('click', function (event) {
 	 
-     
-    
 	//id de l'op en cours de modification: 
 	var opid = $('#comptes_operations').attr('data-opidforcatsel');
     
@@ -276,6 +257,70 @@ $(".li_cat").on('click', function (event) {
 	$('#fadeCat , .CptNewOpModalCat').fadeOut(function() {
 		$('#fadeCat').remove(); 
 	});
+	
+	
+});
+
+//Filtrer les opérations action
+$(".filter_cat").on('click', function (event) {
+	
+    //Action 
+    $.ajax({
+			type: 'POST',
+			url: 'plugins/comptes/core/ajax/comptes.ajax.php',
+			data: {
+				action: 'getBankOperations_filter',
+				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+				id: $('#comptes_operations').attr('data-eqLogic_id'),
+                catid: $(this).attr('data-cat_id')
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error, $('#div_eventOpAlert'));
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_eventOpAlert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				//alert("reussite");
+				//alert(data.result.eqLogic_id);
+				
+                
+                //effacement des opérations déjà présentes: 
+                $('.DivOp').remove();
+                $('.OpEdit').remove();
+                $('DivOpUpper').remove();
+                
+                //alert(data.result.op);
+				
+				add_new_op_in_div(data.result);
+			}
+	});	  
+    
+	
+	//Suppression du modal
+	$('#fadeCat , .CptFilterModalCat').fadeOut(function() {
+		$('#fadeCat').remove(); 
+	});
+	
+	
+});
+
+
+//Filtrer les opérations modal
+$(".bt_filterCat").on('click', function (event) {
+	 
+    //Récupérer l'id du compte ? pas nécessaire ? 
+             
+	//Afficher le modal des catégories 
+    $('body').append('<div id="fadeCat"></div>'); //Ajout du fond opaque noir
+	//Apparition du fond - .css({'filter' : 'alpha(opacity=80)'}) pour corriger les bogues de IE
+	$('#fadeCat').css({'filter' : 'alpha(opacity=80)'}).fadeIn();
+    
+    $('.CptFilterModalCat').show();
+    
+    $('.filter_cat').removeClass("catFocus");
 	
 	
 });
@@ -390,7 +435,7 @@ $('.itemAccount').on('click', function (event) {
 				
 				//Ajout des opérations
 				//add_new_op_in_tables(data, bank_id);
-				add_new_op_in_div(data, bank_id, optionPointage, optionType, optionDateUnique);
+				add_new_op_in_div(data);
 				
 				
 				//alert (data.DepensesDuMois);
@@ -740,18 +785,19 @@ function modalCat() {
 	//alert($('#comptes_operations').attr('data-catidforcatselfocus'));
 }
 
-function add_new_op_in_div(data, bank_id, optPointage, optionType, optionDateUnique) {
+function add_new_op_in_div(data) {
 				//alert(data.op);
+                bank_id = data.eqLogic_id;
                 for (var i in data.op) {
                     //addOpToDiv(data.op[i],data.cat);
-                    addOpToTable(data.op[i],data.cat, optPointage, optionType, optionDateUnique);
+                    addOpToTable(data.op[i],data.cat, data.optPointage, data.optType, data.optDateUnique);
                 }
                 //Gestion des actions
 				$('.DivOp').on('click', function (event) {
 					
 					var op_id =$(this).attr('data-op_id');
                     
-                    if (optPointage == 1) {
+                    if (data.optPointage == 1) {
                         var test = $('a[data-l1key=Checked][data-op_id='+op_id+']');
                         if(!$(event.target).is(test)&&!$.contains(test[0],event.target)) {//pour ne pas dérouler si on clic sur la validation de l'opération
 
@@ -788,7 +834,7 @@ function add_new_op_in_div(data, bank_id, optPointage, optionType, optionDateUni
 				
 				//Javascript associé à chaque opération  
 				//pointage d'une opération
-                if (optPointage == 1) {
+                if (data.optPointage == 1) {
                     $('a[data-l1key=Checked]').on('click', function(event) {
                         
                         //récupération des informations
@@ -1186,11 +1232,9 @@ $('#comptes_operations').scroll(function(e){
 				}
 				//alert("reussite");
 				//alert(data.result.eqLogic_id);
-				add_new_op_in_div(data.result, $('#comptes_operations').attr('data-eqLogic_id'));
+                
+				add_new_op_in_div(data.result);
 				
-				setTimeout(function(){
-					$('.opContainer').packery();
-				}, 2000);
 				
 				new_load = 0;
 				

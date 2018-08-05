@@ -999,22 +999,64 @@ class comptes_operations {
         FROM comptes_operations
         WHERE eqLogic_id = :id AND `id` < :lastid ';
 		
-		if (($Apointer == 0)  && ($pointer == 1)) { //OUI et OUI
-			$sql.= ' ';
+		if (($Apointer == 1)  && ($pointer == 1)) { //OUI et OUI
+			$sql.= '';
 		}
-		if (($Apointer == 1) && ($pointer == 1)) { //NON ET OUI
-			$sql.= ' AND `Checked` = 1 ';
+		if (($Apointer == 0) && ($pointer == 1)) { //NON ET OUI
+			$sql.= ' AND `Checked`= 1 ';
 		}
-		if (($Apointer == 0) && ($pointer == 0)) { //OUI et NON
-			$sql.= ' AND `Checked` = 0 ';
+		if (($Apointer == 1) && ($pointer == 0)) { //OUI et NON
+			$sql.= ' AND `Checked`= 0 ';
 		}
-		if (($Apointer == 1) && ($pointer == 0)) { //NON et NON
+		if (($Apointer == 0) && ($pointer == 0)) { //NON et NON
 			$sql.= ' AND `Checked` > 1 ';
 		}
 
 		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
 		$sql.= ' ORDER BY `id` DESC LIMIT 15';
 		
+        return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
+	}
+	
+    public function getOperations_filter($_BankId, $_catId) {
+		
+        $values = array(
+            'id' => $_BankId,
+			'_catid' => $_catId
+            );
+        log::add('comptes', 'debug', 'FilterAction: BankID: '.$_BankId);
+        log::add('comptes', 'debug', 'FilterAction: CatID: '.$_catId);
+
+        $compte = comptes::byId($_BankId);   
+        
+        $Apointer = $compte->getConfiguration('AffAPointer');
+        $pointer = $compte->getConfiguration('AffPointees');
+        
+        log::add('comptes', 'debug', 'FilterAction: APointer: '.$Apointer);
+        log::add('comptes', 'debug', 'FilterAction: Pointer: '.$pointer);
+            
+        $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
+        FROM comptes_operations
+        WHERE eqLogic_id = :id AND `CatId` = :_catid ';
+		
+		if (($Apointer == 1)  && ($pointer == 1)) { //OUI et OUI
+			$sql.= '';
+		}
+		if (($Apointer == 0) && ($pointer == 1)) { //NON ET OUI
+			$sql.= ' AND `Checked`= 1 ';
+		}
+		if (($Apointer == 1) && ($pointer == 0)) { //OUI et NON
+			$sql.= ' AND `Checked`= 0 ';
+		}
+		if (($Apointer == 0) && ($pointer == 0)) { //NON et NON
+			$sql.= ' AND `Checked` > 1 ';
+		}
+
+		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
+		//$sql.= ' ORDER BY `id` DESC LIMIT 15';
+        $sql.= ' ORDER BY `id` ';
+        
+		log::add('comptes', 'debug', 'FilterAction: Requete: '.$sql);
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	

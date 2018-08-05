@@ -91,6 +91,16 @@
 	color:#fff;
 }
 
+.CptFilterModalCat {
+	position:absolute;
+	top: 50px;
+	right: 0px;
+	z-index:99998;
+	background-color:#f8f8f8;  
+	border-radius: 4px;
+	color:#fff;
+}
+
 
 
 .CptHeader {
