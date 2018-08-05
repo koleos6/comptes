@@ -245,7 +245,7 @@ $allCats = comptes_categories::all();
     
     
 	<!-- Partie Gestion des opérations d'un compte -->
-	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="">
+	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0>
 		<legend class="cpt_legend">
 		<div class="HeaderContainer">
 			<div class="CptTitle">

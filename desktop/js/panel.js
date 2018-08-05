@@ -251,7 +251,9 @@ $(".filter_cat").on('click', function (event) {
 				}
 				//alert("reussite");
 				//alert(data.result.eqLogic_id);
-				
+                
+                $('#comptes_operations').attr('data-mode', 1); //mode filtre
+				$('#comptes_operations').attr('data-filterCatId', data.result.filterCatId); 
                 
                 //effacement des opérations déjà présentes: 
                 $('.DivOp').remove();
@@ -371,6 +373,8 @@ $('.itemAccount').on('click', function (event) {
 				
 				$('#comptes_operations').attr('data-eqLogic_id',data.eqLogic_id);
 				$('#comptes_operations').attr('data-devise',devise);
+                
+                $('#comptes_operations').attr('data-mode', 0); //Mode opération normales
                 
 				$('#cpt_title').text(data['name']);
 				$('#cpt_obj').text(obj_name);
@@ -1173,7 +1177,9 @@ $('#comptes_operations').scroll(function(e){
 				action: 'getBankOperations_suite',
 				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
 				id: $('#comptes_operations').attr('data-eqLogic_id'),
-				last_id: lastOpDisplayed
+				last_id: lastOpDisplayed, 
+                mode: $('#comptes_operations').attr('data-mode'), 
+                filterCatId : $('#comptes_operations').attr('data-filterCatId')
 			},
 			dataType: 'json',
 			error: function (request, status, error) {

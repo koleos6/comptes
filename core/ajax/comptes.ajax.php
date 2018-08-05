@@ -110,7 +110,9 @@ try {
 		
         $return = utils::o2a($eqLogic);
 		$return['eqLogic_id'] = init('id');
-        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id')));
+        
+        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id'),init('mode'),init('filterCatId')));
+        
 		$return['cat'] = utils::o2a(comptes_categories::all());
         $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
         $return['optType'] = $eqLogic->getConfiguration('ActivationTypeOperation');
@@ -133,6 +135,7 @@ try {
 		$return['eqLogic_id'] = init('id');
         $return['op'] = utils::o2a(comptes_operations::getOperations_filter(init('id'), init('catid')));
 		$return['cat'] = utils::o2a(comptes_categories::all());
+        $return['filterCatId'] = init('catid');
         $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
         $return['optType'] = $eqLogic->getConfiguration('ActivationTypeOperation');
         $return['optDateUnique'] = $eqLogic->getConfiguration('ActivationDateValeur');

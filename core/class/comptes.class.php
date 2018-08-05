@@ -1004,7 +1004,7 @@ class comptes_operations {
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
-	public function getOperations_suite($_BankId, $_Last_id) {
+	public function getOperations_suite($_BankId, $_Last_id, $_mode=0, $_catId=0) {
 		 $values = array(
             'id' => $_BankId,
 			'lastid' => $_Last_id
@@ -1027,8 +1027,8 @@ class comptes_operations {
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM comptes_operations
         WHERE eqLogic_id = :id AND `id` < :lastid ';
-		
-		if (($Apointer == 1)  && ($pointer == 1)) { //OUI et OUI
+        
+        if (($Apointer == 1)  && ($pointer == 1)) { //OUI et OUI
 			$sql.= '';
 		}
 		if (($Apointer == 0) && ($pointer == 1)) { //NON ET OUI
@@ -1040,10 +1040,22 @@ class comptes_operations {
 		if (($Apointer == 0) && ($pointer == 0)) { //NON et NON
 			$sql.= ' AND `Checked` > 1 ';
 		}
+        
+        if ($_mode == 1) {
+            $sql.= ' AND `CatId` = :_catid ';
+            $values = array(
+                'id' => $_BankId,
+                'lastid' => $_Last_id,
+                '_catid' => $_catId
+            );
+            
+        }
+		
 
 		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
 		$sql.= ' ORDER BY `id` DESC LIMIT 15';
-		
+		log::add('comptes', 'debug', 'Schroll update: Requete: '.$sql);
+        
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
 	
@@ -1082,8 +1094,8 @@ class comptes_operations {
 		}
 
 		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
-		//$sql.= ' ORDER BY `id` DESC LIMIT 15';
-        $sql.= ' ORDER BY `id` ';
+		$sql.= ' ORDER BY `id` DESC LIMIT 40';
+        //$sql.= ' ORDER BY `id` ';
         
 		log::add('comptes', 'debug', 'FilterAction: Requete: '.$sql);
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
