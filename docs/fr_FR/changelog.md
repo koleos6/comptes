@@ -2,6 +2,7 @@
 - Tri sur le graphique pour grouper par catégories de même couleur. 
 - Ajout fonction de filtre sur une catégorie
 - Simplification du code
+- Suppression du message de sauvegarde réussi automatiquement
 
 # 29/07/2018 - V1.1
 

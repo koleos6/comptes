@@ -388,10 +388,15 @@ $('.itemAccount').on('click', function (event) {
                 $('.bt_configurationBank').on('click',function(){
                     $('#md_modal').dialog({title: "{{Configuration du compte}}"});
                     $("#md_modal").load('index.php?v=d&m=comptes&p=comptes&ajax=1&id='+$(this).attr('data-eqLogic_id')).dialog('open');
+                    
+                    
+                    
                 });
                 //FIN
 				
 				$('.HeaderContainer').packery();
+               
+                
 				
 				//Ajout des opérations
 				//add_new_op_in_tables(data, bank_id);
@@ -417,6 +422,12 @@ $('.itemAccount').on('click', function (event) {
 				updatePieCharts('update');
 				
 				$('.affDevise').text(devise);
+                
+                setTimeout(function (){
+                        $('#div_alert ').hide();
+                    },
+                    1500
+                );
 		}
     });
 });
