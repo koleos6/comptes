@@ -1,42 +1,42 @@
-Comptes 
-==============================
+Accounts (Comptes) 
+ ==============================
 
-Description 
------------
+Description
+ -----------
 
-Plugin qui permet la gestion (manuelle) de comptes bancaires. 
+This plugin is used to manage Bank accounts (manually).
 
-Configuration du plugin
+Plugin configuration
 ========================
 
-Dans la page de configuration du plugin, 1ère étape afin de le rendre fonctionel, il faut dans un premier temps activer le plugin.  
+In the plugin configuration page, 1st step is to activate it. 
 
-Une fois le plugin activé, ce dernier va automatiquement créer les tables nécessaires au bon fonctionnemnet du plugin.  
+Once the plugin is activated, specific mysql tables will be automatically created. 
 
-La page de configuration permet de configurer plusieurs types d'informations importantes:  
-- La possibilité d'importer les catégories proposées par défaut afin d'éviter d'avoir à recréer un ensemble de catégories pour ceux que cela intéresse.  
-C'est une sous partie de celles que j'utilise actuellement, libre à vous de modifier ensuite!  
-Pour cela il faut cliquer sur le bouton "importer" mais attention, si vous avez déjà créé des catégories, cela peut poser soucis (pas de gestion avancée de conflit si des comptes sont déjà créés avec des opérations utilisant des catégories)
+The plugin configuration page allow to configure the following important data:
+- - The possibility to import default categories in order to avoid to create the full set manually. 
+It is a subset of the categories I used. It is up to you to modify them afterward.
+To import the default categories, you need to clic on the "import" button. But be carrefull, if you have existing categories, conflicts could occcur (no advanced conflict management implemented). 
 
-- Le nom des banques disponible à associer à un compte.  
-Pour chaque banque, on peut associer un grand logo, un petit logo (pour le menu) et un nom. 
+- - The name of the banks that could be associated to an acccount.
+For every bank, a big and a small logo (for the menu) and a name could be set.
 
 ![comptes image configuration](../images/PageConfiguration.png)
 
-La 1ère ligne du tableau des banques permet d'ajouter une nouvelle banque.  
+1st line of the table allows to add a new bank.
 
-Les logos sont à mettre dans le répertoire "images/banques/" du plugin.  
+Logos need to be put in "plugins/comptes/images/banques/" directory.
 
-La taille recommandée pour les logos est de 225 px * 225 px.  
+Recommended size for logos is 225 px * 225 px.
 
-La taille recommandée pour les mini logos est de 40 px * 40 px. 
+Recommended size for small logos is 40 px * 40 px.
 
 
-La page de gestion du plugin 
+Plugin management area.
 =========
-Rendez vous dans le menu *Plugins &gt; Organisation* pour retrouver le plugin.
+Go to *Plugins &gt; Organization* to find the plugin management page.
 
-Voici un aperçu de cette page avec plusieurs comptes créés: 
+Here is an overview of this page with different accounts created:
 
 ![comptes image page plugin](../images/PagePlugin.png)
 
@@ -61,10 +61,10 @@ Permet d'activer le compte et le rendre accessible dans le panel comptes
 - Visible
 Permet de rendre visible le compte sur le dashboard
 
-- Historiser le solde du compte
+- Historize the account balance
 Permet de générer une fois par jour l'historique du solde du compte dans l'historique Jeedom.
 
-- Devise
+- Currency
 Permet d'indiquer la devise du compte : est utilisée dans le panel et dans le widget
 
 - Affichage des opérations non pointées
