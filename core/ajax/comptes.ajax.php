@@ -87,9 +87,14 @@ try {
 		
         $return = utils::o2a($eqLogic);
 		$return['eqLogic_id'] = init('id');
-        $return['op'] = utils::o2a(comptes_operations::getOperations_debut(init('id'),init('APointer'),init('Pointer')));
+        $return['op'] = utils::o2a(comptes_operations::getOperations_debut(init('id')));
 		//$return['op'] = utils::o2a($eqLogic->getOperations());
 		$return['cat'] = utils::o2a(comptes_categories::all());
+        //log::add('comptes', 'debug', 'test 0');
+        $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
+        //log::add('comptes', 'debug', 'test '.$return['optPointage']);
+        $return['optType'] = $eqLogic->getConfiguration('ActivationTypeOperation');
+        $return['optDateUnique'] = $eqLogic->getConfiguration('ActivationDateValeur');
         ajax::success(jeedom::toHumanReadable($return));
 	}
 	
@@ -105,9 +110,37 @@ try {
 		
         $return = utils::o2a($eqLogic);
 		$return['eqLogic_id'] = init('id');
-        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id'),init('APointer'),init('Pointer')));
+        
+        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id'),init('mode'),init('filterCatId')));
+        
 		$return['cat'] = utils::o2a(comptes_categories::all());
+        $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
+        $return['optType'] = $eqLogic->getConfiguration('ActivationTypeOperation');
+        $return['optDateUnique'] = $eqLogic->getConfiguration('ActivationDateValeur');
         ajax::success(jeedom::toHumanReadable($return));
+	}
+    
+    if (init('action') == 'getBankOperations_filter') {
+        
+		$typeEqLogic = init('type');
+        if ($typeEqLogic == '' || !class_exists($typeEqLogic)) {
+            throw new Exception(__('{{Type incorrect (classe équipement inexistante) : }}', __FILE__) . $typeEqLogic);
+        }
+        $eqLogic = $typeEqLogic::byId(init('id'));
+        if (!is_object($eqLogic)) {
+            throw new Exception(__('{{Banque inconnue verifié l\'id : }}', __FILE__) . init('id'));
+        }
+		
+        $return = utils::o2a($eqLogic);
+		$return['eqLogic_id'] = init('id');
+        $return['op'] = utils::o2a(comptes_operations::getOperations_filter(init('id'), init('catid')));
+		$return['cat'] = utils::o2a(comptes_categories::all());
+        $return['filterCatId'] = init('catid');
+        $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
+        $return['optType'] = $eqLogic->getConfiguration('ActivationTypeOperation');
+        $return['optDateUnique'] = $eqLogic->getConfiguration('ActivationDateValeur');
+        ajax::success(jeedom::toHumanReadable($return));
+        
 	}
 	
 	if (init('action') == 'updatePieCharts') {

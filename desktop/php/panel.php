@@ -11,6 +11,11 @@ include_file('desktop', 'panel', 'css', 'comptes');
 include_file('3rdparty', 'c3/c3', 'css', 'comptes'); 
 $eqLogics = eqLogic::byType('comptes');
 sendVarToJS('eqType', 'comptes');
+
+$allCats = comptes_categories::all();
+
+
+
 ?>
 
 <div id="md_modalComptes1"></div>
@@ -240,13 +245,13 @@ sendVarToJS('eqType', 'comptes');
     
     
 	<!-- Partie Gestion des opérations d'un compte -->
-	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="">
+	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0>
 		<legend class="cpt_legend">
 		<div class="HeaderContainer">
 			<div class="CptTitle">
 			
 			<span  class="label_cpt_obj2" ><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> <span id="cpt_obj"  ></span> - <span id="cpt_title"></span>&nbsp;</span>
-			<div style="float:right" ><i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
+			<div style="float:right" ><i class="fa fa-filter bt_filterCat cursor"></i>&nbsp;<i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
 			</div>
 			<div>
 				<div class = "CptNewOp cursor tooltips" title="{{Ajouter une opération}}">
@@ -368,61 +373,22 @@ sendVarToJS('eqType', 'comptes');
 		<center><div id="chart_comptes_1"></div></center>
 		<center><div id="chart_comptes_2"></div></center>
 	</div>
-<!-- Partie droite : selection des catégories -->
+<!-- Partie droite : selection des catégories -cas modification -->
 
 <div class= "CptNewOpModalCat col-lg-3" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;height:30px;font-size: 14px;display:none;"> 
-	<ul id="ul_cat" class="nav nav-list bs-sidenav">
-		<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
-        <!-- inutille car ajoutée par défaut dans les catégories
-            <li style="height:60px;" class="cursor li_cat" data-cat_id=0 data-cat_name_upper="" data-cat_name="{{Aucune}}" data-cat_imgBackgroundcolor="#c266c2" data-cat_imgColor="#FFF" data-cat_imgIcon="<i class='icon plugin-comptes-billets1'></i>" >
-                <a style="position:relative;left:0px;">
-                    <div class="image_cat" style="font-size : 2em;color:#FFF;border: 1px solid #c266c2;;border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:#c266c2;" ><i class="icon plugin-comptes-billets1"></i></div>
-                    <div style="float:left;margin-left:50px;margin-top:-30px">{{Aucune}}</div>
-                </a>
-            </li>
-        -->   
-            
-            
-	<?php
-	$allCats = comptes_categories::all();
-	$i=0;
-	foreach ($allCats as $cat) {
-		$margin = 25 * $cat->getLevel();
-		//Search upper level cat if exists: 
-		$cat_i=$i;
-		$cat_level=$cat->getLevel();
-		$cat_name=$cat->getName();
-		$cat_upper_level_name=$cat->getName();
-		$stop=0;
-		
-		if (($cat->getId() != '') && ($cat_level > 0)) {
-			for ($j=$cat_i; ($j >= 0) && ($stop == 0); $j--) {
-				if ($allCats[$j]->getLevel() == ($cat_level - 1))  {
-					$cat_upper_level_name = $allCats[$j]->getName();
-					$cat_upper_level_name = $cat_upper_level_name . ' -> ';
-					$stop = 1;
-				}
-			}
-							
-		}
-		if (($cat->getId() != '') && ($cat_level == 0)) {
-			$cat_upper_level_name =  "";
-		
-		}
-		echo '<li style="height:60px;" class="cursor li_cat" data-cat_id="' . $cat->getId() . '" data-cat_name_upper="' . $cat_upper_level_name . '" data-cat_name="' . $cat_name . '" data-cat_imgBackgroundcolor="' . $cat->getImage("tagColor") . '" data-cat_imgColor="' . $cat->getImage("tagTextColor") . '" data-cat_imgIcon="' . $cat->getImage("icon") . '">'
-		. '<a style="position:relative;left:' . $margin . 'px;">';
-		echo '<div class="image_cat" style="font-size : 2em;color:' . $cat->getImage("tagTextColor")
-		. ';border: 1px solid ' . $cat->getImage("tagColor")	. ';border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:' . $cat->getImage("tagColor") . ';" >' 
-		. $cat->getImage("icon") . '</div>';
-		echo '<div style="float:left;margin-left:50px;margin-top:-30px">';
-		echo $cat->getName();
-		echo '</div>';
-		echo '</a>'
-		. '</li>';
-		$i++;
-	}
+    <?php
+
+        ModalCatRight($allCats, 0); //0= fonctin de choix de catégorie pour modification 1 = pour filtres
 	?>
-	</ul>
+</div>
+
+<!-- Partie droite : selection des catégories -cas filtres -->
+
+<div class= "CptFilterModalCat col-lg-3" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;height:30px;font-size: 14px;display:none;"> 
+    <?php
+
+        ModalCatRight($allCats, 1); //0= fonctin de choix de catégorie pour modification 1 = pour filtres
+	?>
 </div>
 	
 	<!-- Partie Gestion des catégories -->
@@ -561,6 +527,60 @@ sendVarToJS('eqType', 'comptes');
 
 
 <?php 
+
+
+function ModalCatRight($allCats, $filter=0) {//0= fonctin de choix de catégorie pour modification 1 = pour filtres
+
+    if ($filter)
+        $classinfo= 'filter_cat';
+    else 
+        $classinfo= 'li_cat';
+    
+    echo '<ul id="ul_cat" class="nav nav-list bs-sidenav">';
+	echo '<li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>';
+       
+	
+	
+	$i=0;
+	foreach ($allCats as $cat) {
+		$margin = 25 * $cat->getLevel();
+		//Search upper level cat if exists: 
+		$cat_i=$i;
+		$cat_level=$cat->getLevel();
+		$cat_name=$cat->getName();
+		$cat_upper_level_name=$cat->getName();
+		$stop=0;
+		
+		if (($cat->getId() != '') && ($cat_level > 0)) {
+			for ($j=$cat_i; ($j >= 0) && ($stop == 0); $j--) {
+				if ($allCats[$j]->getLevel() == ($cat_level - 1))  {
+					$cat_upper_level_name = $allCats[$j]->getName();
+					$cat_upper_level_name = $cat_upper_level_name . ' -> ';
+					$stop = 1;
+				}
+			}
+							
+		}
+		if (($cat->getId() != '') && ($cat_level == 0)) {
+			$cat_upper_level_name =  "";
+		
+		}
+		echo '<li style="height:60px;" class="cursor '. $classinfo . '" data-cat_id="' . $cat->getId() . '" data-cat_name_upper="' . $cat_upper_level_name . '" data-cat_name="' . $cat_name . '" data-cat_imgBackgroundcolor="' . $cat->getImage("tagColor") . '" data-cat_imgColor="' . $cat->getImage("tagTextColor") . '" data-cat_imgIcon="' . $cat->getImage("icon") . '">'
+		. '<a style="position:relative;left:' . $margin . 'px;">';
+		echo '<div class="image_cat" style="font-size : 2em;color:' . $cat->getImage("tagTextColor")
+		. ';border: 1px solid ' . $cat->getImage("tagColor")	. ';border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:' . $cat->getImage("tagColor") . ';" >' 
+		. $cat->getImage("icon") . '</div>';
+		echo '<div style="float:left;margin-left:50px;margin-top:-30px">';
+		echo $cat->getName();
+		echo '</div>';
+		echo '</a>'
+		. '</li>';
+		$i++;
+	}
+    
+    echo '</ul>';
+}
+
 include_file('3rdparty', 'd3-master/d3', 'js', 'comptes'); 
 include_file('3rdparty', 'd3-master/d3.min', 'js', 'comptes'); 
 include_file('3rdparty', 'd3-master/d3pie.min', 'js', 'comptes'); 

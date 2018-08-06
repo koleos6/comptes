@@ -17,9 +17,6 @@
  
 var temp_new_op = 0;
 
-var bt_APointer;
-var bt_Pointer;
-
 var new_load = 0;
 
 
@@ -192,55 +189,7 @@ $('.bt_ManageCat').on('click', function () {
 	$('.itemAccount').removeClass('active');
 	$('.btn-group').hide();
 
-/*
-	$('#md_modalComptes2').dialog({
-		autoOpen: false,
-		modal: true,
-		height: 750,
-		width: 900,
-		title: "{{Gestion des catégories}}"
-	});
-	var op_id = $(this).attr('data-op_id');
-	$('#md_modalComptes2').load('index.php?v=d&plugin=comptes&modal=GestionCategories');
-	$("#md_modalComptes2").dialog('option', 'buttons', {
-		"{{Fermer}}": function() {
-			$(this).dialog("close");
-		}
-	});
-	$('#md_modalComptes2').dialog('open');
-*/	
 });
-
-/* Anciennes fonction dispo a la fois dans la configuration et sur la page d'un compte: 
-A recoder autrement ?
-function bsIsEnableYes_Apointer () {
-	$('#bsIsEnableNo_Apointer').removeClass("btn-danger");
-	$('#bsIsEnableYes_Apointer').addClass("btn-danger");
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').val('0');
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').prop('checked', false);
-}
-
-function bsIsEnableNo_Apointer() {
-	$('#bsIsEnableYes_Apointer').removeClass("btn-danger");
-	$('#bsIsEnableNo_Apointer').addClass("btn-danger");
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').val('1');
-	//$('input[data-l1key="configuration"][data-l2key="AffAPointer"]').prop('checked', true);
-}
-
-function bsIsEnableYes_Pointer() {
-	$('#bsIsEnableNo_Pointer').removeClass("btn-success");
-	$('#bsIsEnableYes_Pointer').addClass("btn-success");
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').val('1');
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').prop('checked', true);
-}
-
-function bsIsEnableNo_Pointer() {
-	$('#bsIsEnableYes_Pointer').removeClass("btn-success");
-	$('#bsIsEnableNo_Pointer').addClass("btn-success");
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').val('0');
-	//$('input[data-l1key="configuration"][data-l2key="AffPointees"]').prop('checked', false);
-}
-*/
 
 $('.active_account').on('click', function (event) {
 
@@ -252,8 +201,6 @@ $('.active_account').on('click', function (event) {
 //modification de la catégorie d'une opération
 $(".li_cat").on('click', function (event) {
 	 
-     
-    
 	//id de l'op en cours de modification: 
 	var opid = $('#comptes_operations').attr('data-opidforcatsel');
     
@@ -276,6 +223,72 @@ $(".li_cat").on('click', function (event) {
 	$('#fadeCat , .CptNewOpModalCat').fadeOut(function() {
 		$('#fadeCat').remove(); 
 	});
+	
+	
+});
+
+//Filtrer les opérations action
+$(".filter_cat").on('click', function (event) {
+	
+    //Action 
+    $.ajax({
+			type: 'POST',
+			url: 'plugins/comptes/core/ajax/comptes.ajax.php',
+			data: {
+				action: 'getBankOperations_filter',
+				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+				id: $('#comptes_operations').attr('data-eqLogic_id'),
+                catid: $(this).attr('data-cat_id')
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error, $('#div_eventOpAlert'));
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_eventOpAlert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				//alert("reussite");
+				//alert(data.result.eqLogic_id);
+                
+                $('#comptes_operations').attr('data-mode', 1); //mode filtre
+				$('#comptes_operations').attr('data-filterCatId', data.result.filterCatId); 
+                
+                //effacement des opérations déjà présentes: 
+                $('.DivOp').remove();
+                $('.OpEdit').remove();
+                $('DivOpUpper').remove();
+                
+                //alert(data.result.op);
+				
+				add_new_op_in_div(data.result);
+			}
+	});	  
+    
+	
+	//Suppression du modal
+	$('#fadeCat , .CptFilterModalCat').fadeOut(function() {
+		$('#fadeCat').remove(); 
+	});
+	
+	
+});
+
+
+//Filtrer les opérations modal
+$(".bt_filterCat").on('click', function (event) {
+	 
+    //Récupérer l'id du compte ? pas nécessaire ? 
+             
+	//Afficher le modal des catégories 
+    $('body').append('<div id="fadeCat"></div>'); //Ajout du fond opaque noir
+	//Apparition du fond - .css({'filter' : 'alpha(opacity=80)'}) pour corriger les bogues de IE
+	$('#fadeCat').css({'filter' : 'alpha(opacity=80)'}).fadeIn();
+    
+    $('.CptFilterModalCat').show();
+    
+    $('.filter_cat').removeClass("catFocus");
 	
 	
 });
@@ -313,11 +326,6 @@ $('.itemAccount').on('click', function (event) {
 	}
 	$('.btn-group').show();
 
-	
-	bt_APointer = $(this).attr('data-bt_APointer');
-	bt_Pointer = $(this).attr('data-bt_Pointer');
-
-    
     //Options: 
     var optionPointage = $(this).attr('data-optPointage');
     if (optionPointage == 1) {
@@ -327,9 +335,6 @@ $('.itemAccount').on('click', function (event) {
     }else {
         $('#NewOpOptionPointage').hide();
          $('#FinDeMoisAffichage').hide();
-        //Toutes les opérations sont souhaitées car l'option est désactivée: 
-        bt_APointer = 1; 
-        bt_Pointer =  1;
     }
     
     var optionType = $(this).attr('data-optType');
@@ -361,8 +366,6 @@ $('.itemAccount').on('click', function (event) {
 	operations_print({
         type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
         id: $(this).attr('data-eqLogic_id'),
-		APointer: bt_APointer, 
-		Pointer: bt_Pointer,
         error: function (error) {
             $('#div_alert').showAlert({message: error.message, level: 'danger'});
         },
@@ -370,6 +373,8 @@ $('.itemAccount').on('click', function (event) {
 				
 				$('#comptes_operations').attr('data-eqLogic_id',data.eqLogic_id);
 				$('#comptes_operations').attr('data-devise',devise);
+                
+                $('#comptes_operations').attr('data-mode', 0); //Mode opération normales
                 
 				$('#cpt_title').text(data['name']);
 				$('#cpt_obj').text(obj_name);
@@ -383,14 +388,19 @@ $('.itemAccount').on('click', function (event) {
                 $('.bt_configurationBank').on('click',function(){
                     $('#md_modal').dialog({title: "{{Configuration du compte}}"});
                     $("#md_modal").load('index.php?v=d&m=comptes&p=comptes&ajax=1&id='+$(this).attr('data-eqLogic_id')).dialog('open');
+                    
+                    
+                    
                 });
                 //FIN
 				
 				$('.HeaderContainer').packery();
+               
+                
 				
 				//Ajout des opérations
 				//add_new_op_in_tables(data, bank_id);
-				add_new_op_in_div(data, bank_id, optionPointage, optionType, optionDateUnique);
+				add_new_op_in_div(data);
 				
 				
 				//alert (data.DepensesDuMois);
@@ -412,6 +422,12 @@ $('.itemAccount').on('click', function (event) {
 				updatePieCharts('update');
 				
 				$('.affDevise').text(devise);
+                
+                setTimeout(function (){
+                        $('#div_alert ').hide();
+                    },
+                    1500
+                );
 		}
     });
 });
@@ -740,18 +756,19 @@ function modalCat() {
 	//alert($('#comptes_operations').attr('data-catidforcatselfocus'));
 }
 
-function add_new_op_in_div(data, bank_id, optPointage, optionType, optionDateUnique) {
+function add_new_op_in_div(data) {
 				//alert(data.op);
+                bank_id = data.eqLogic_id;
                 for (var i in data.op) {
                     //addOpToDiv(data.op[i],data.cat);
-                    addOpToTable(data.op[i],data.cat, optPointage, optionType, optionDateUnique);
+                    addOpToTable(data.op[i],data.cat, data.optPointage, data.optType, data.optDateUnique);
                 }
                 //Gestion des actions
 				$('.DivOp').on('click', function (event) {
 					
 					var op_id =$(this).attr('data-op_id');
                     
-                    if (optPointage == 1) {
+                    if (data.optPointage == 1) {
                         var test = $('a[data-l1key=Checked][data-op_id='+op_id+']');
                         if(!$(event.target).is(test)&&!$.contains(test[0],event.target)) {//pour ne pas dérouler si on clic sur la validation de l'opération
 
@@ -788,7 +805,7 @@ function add_new_op_in_div(data, bank_id, optPointage, optionType, optionDateUni
 				
 				//Javascript associé à chaque opération  
 				//pointage d'une opération
-                if (optPointage == 1) {
+                if (data.optPointage == 1) {
                     $('a[data-l1key=Checked]').on('click', function(event) {
                         
                         //récupération des informations
@@ -1171,9 +1188,9 @@ $('#comptes_operations').scroll(function(e){
 				action: 'getBankOperations_suite',
 				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
 				id: $('#comptes_operations').attr('data-eqLogic_id'),
-				last_id: lastOpDisplayed,
-				APointer: bt_APointer, 
-				Pointer: bt_Pointer
+				last_id: lastOpDisplayed, 
+                mode: $('#comptes_operations').attr('data-mode'), 
+                filterCatId : $('#comptes_operations').attr('data-filterCatId')
 			},
 			dataType: 'json',
 			error: function (request, status, error) {
@@ -1186,11 +1203,9 @@ $('#comptes_operations').scroll(function(e){
 				}
 				//alert("reussite");
 				//alert(data.result.eqLogic_id);
-				add_new_op_in_div(data.result, $('#comptes_operations').attr('data-eqLogic_id'));
+                
+				add_new_op_in_div(data.result);
 				
-				setTimeout(function(){
-					$('.opContainer').packery();
-				}, 2000);
 				
 				new_load = 0;
 				
@@ -1215,9 +1230,7 @@ operations_print = function (_params) {
     paramsAJAX.data = {
         action: 'getBankOperations',
         type: _params.type,
-        id: _params.id,
-		APointer: _params.APointer,
-		Pointer: _params.Pointer
+        id: _params.id
     };
     $.ajax(paramsAJAX);
 }
@@ -1271,43 +1284,6 @@ function addNewOpToTable(bank_id) {
 	var tr = $('#table_op tbody tr:last');
 }
 
-/*
-
-$('#bsIsEnableYes_Apointer').click(function () {
-	if ($('#bsIsEnableYes_Apointer').hasClass('btn-danger'))
-        return;
-    bsIsEnableYes_Apointer();
-	
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_APointer',0);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-	//ajouter ici l'ajax pour sauvegarde dans eqLogic
-});
-
-$('#bsIsEnableNo_Apointer').click(function () {
-	if ($('#bsIsEnableNo_Apointer').hasClass('btn-danger'))
-        return;
-    bsIsEnableNo_Apointer();
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_APointer',1);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-});
-
-$('#bsIsEnableYes_Pointer').click(function () {
-	if ($('#bsIsEnableYes_Pointer').hasClass('btn-success'))
-        return;
-    bsIsEnableYes_Pointer();
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_Pointer',1);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-});
-
-$('#bsIsEnableNo_Pointer').click(function () {
-	if ($('#bsIsEnableNo_Pointer').hasClass('btn-success'))
-        return;
-    bsIsEnableNo_Pointer();
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').attr('data-bt_Pointer',0);
-	$('.li_eqLogic[data-eqLogic_id='+$('#comptes_operations').attr('data-eqLogic_id')+']').click();
-});
-
-*/
 /* Partie Gestion catégories */
 	function catSetOrder(_params) {
 		var paramsRequired = ['categories'];
