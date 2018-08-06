@@ -277,7 +277,10 @@ $(".filter_cat").on('click', function (event) {
 
 $(".bt_search").on('click', function (event) {
     
-    $('.CptSearchModal').show();
+    if ($('.CptSearchModal').is(":hidden"))
+        $('.CptSearchModal').show();
+    else
+    $('.CptSearchModal').hide();
     
     
     
