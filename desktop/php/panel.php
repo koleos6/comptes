@@ -245,15 +245,20 @@ $allCats = comptes_categories::all();
     
     
 	<!-- Partie Gestion des opérations d'un compte -->
-	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0>
+	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0 data-search="">
 		<legend class="cpt_legend">
 		<div class="HeaderContainer">
 			<div class="CptTitle">
 			
 			<span  class="label_cpt_obj2" ><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> <span id="cpt_obj"  ></span> - <span id="cpt_title"></span>&nbsp;</span>
-			<div style="float:right" ><i class="fa fa-filter bt_filterCat cursor"></i>&nbsp;<i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
+			<div style="float:right" ><i class="fa fa-search bt_search cursor"></i>&nbsp;<i class="fa fa-filter bt_filterCat cursor"></i>&nbsp;<i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
 			</div>
 			<div>
+            <div class="CptSearchModal" style="display:none">
+
+                <input class="form-control input-sm searchField" placeholder="{{Rechercher}}" style="width: 100%"/><i class="fa fa-search bt_LaunchSearch cursor"></i>
+
+            </div>
 				<div class = "CptNewOp cursor tooltips" title="{{Ajouter une opération}}">
 					<i class="fa fa-plus-circle " ></i>
 				</div>

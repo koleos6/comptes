@@ -72,6 +72,19 @@
 	z-index: 9999;
 }
 
+.CptSearchModal {
+	position:absolute;
+	margin-left:-250px;
+	margin-top:70px;
+	width:250px;
+	height:30px;
+	z-index:10;
+	background-color:#f8f8f8;  
+	border-radius: 4px;
+    text-align:center;
+	color:#fff;
+}
+
 .CptNewOpModal {
 	position:absolute;
 	margin-left:-365px;

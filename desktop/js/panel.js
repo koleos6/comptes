@@ -275,6 +275,57 @@ $(".filter_cat").on('click', function (event) {
 	
 });
 
+$(".bt_search").on('click', function (event) {
+    
+    $('.CptSearchModal').show();
+    
+    
+    
+});
+
+
+
+$(".bt_LaunchSearch").on('click', function (event) {
+    
+    $('.CptSearchModal').hide();
+    
+    //Action 
+    $.ajax({
+			type: 'POST',
+			url: 'plugins/comptes/core/ajax/comptes.ajax.php',
+			data: {
+				action: 'getBankOperations_search',
+				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+				id: $('#comptes_operations').attr('data-eqLogic_id'),
+                search: $(".searchField").value()
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error, $('#div_eventOpAlert'));
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_eventOpAlert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				//alert("reussite");
+				//alert(data.result.eqLogic_id);
+                
+                $('#comptes_operations').attr('data-mode', 2); //mode recherche
+				$('#comptes_operations').attr('data-search', data.result.search); 
+                
+                //effacement des opérations déjà présentes: 
+                $('.DivOp').remove();
+                $('.OpEdit').remove();
+                $('DivOpUpper').remove();
+                
+                //alert(data.result.op);
+				
+				add_new_op_in_div(data.result);
+			}
+	});	  
+    
+});
 
 //Filtrer les opérations modal
 $(".bt_filterCat").on('click', function (event) {
@@ -1190,7 +1241,8 @@ $('#comptes_operations').scroll(function(e){
 				id: $('#comptes_operations').attr('data-eqLogic_id'),
 				last_id: lastOpDisplayed, 
                 mode: $('#comptes_operations').attr('data-mode'), 
-                filterCatId : $('#comptes_operations').attr('data-filterCatId')
+                filterCatId : $('#comptes_operations').attr('data-filterCatId'), 
+                search : $('#comptes_operations').attr('data-search')
 			},
 			dataType: 'json',
 			error: function (request, status, error) {
