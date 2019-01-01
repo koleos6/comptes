@@ -999,7 +999,7 @@ class comptes_operations {
 		if (($Apointer == 0) && ($pointer == 0)) { //NON et NON
 			$sql.= ' AND `Checked` > 1 ';
 		}
-		$sql.= ' ORDER BY `id` DESC LIMIT 40';
+		$sql.= ' ORDER BY `CheckedOn` DESC LIMIT 40';
 		
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
@@ -1063,7 +1063,7 @@ class comptes_operations {
 		
 
 		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
-		$sql.= ' ORDER BY `id` DESC LIMIT 15';
+		$sql.= ' ORDER BY `CheckedOn` DESC LIMIT 15';
 		log::add('comptes', 'debug', 'Schroll update: Requete: '.$sql);
         
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
@@ -1104,7 +1104,7 @@ class comptes_operations {
 		}
 
 		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
-		$sql.= ' ORDER BY `id` DESC LIMIT 40';
+		$sql.= ' ORDER BY `CheckedOn` DESC LIMIT 40';
         //$sql.= ' ORDER BY `id` ';
         
 		log::add('comptes', 'debug', 'FilterAction: Requete: '.$sql);
@@ -1126,7 +1126,7 @@ class comptes_operations {
         FROM comptes_operations
         WHERE eqLogic_id = :id AND `BankOperation` LIKE :_search ';
 		
-		$sql.= ' ORDER BY `id` DESC LIMIT 40';
+		$sql.= ' ORDER BY `CheckedOn` DESC LIMIT 40';
         
 		log::add('comptes', 'debug', 'SearchAction: Requete: '.$sql);
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
