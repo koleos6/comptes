@@ -1003,11 +1003,10 @@ class comptes_operations {
 		
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
 	}
-	
-	public function getOperations_suite($_BankId, $_Last_id, $_mode=0, $_catId=0, $_search="") {
+
+    public function getOperations_suite($_BankId, $_offset=0, $_mode=0, $_catId=0, $_search="") {
 		 $values = array(
-            'id' => $_BankId,
-			'lastid' => $_Last_id
+            'id' => $_BankId
             );
             
         $compte = comptes::byId($_BankId);   
@@ -1026,14 +1025,13 @@ class comptes_operations {
             
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM comptes_operations
-        WHERE eqLogic_id = :id AND `id` < :lastid ';
+        WHERE eqLogic_id = :id ';
         
         switch($_mode) {
             case 2:
                 $sql.= ' AND `BankOperation` LIKE :_search ';
                 $values = array(
                     'id' => $_BankId,
-                    'lastid' => $_Last_id,
                     '_search' => '%'.$_search.'%'
                 );
             break;
@@ -1041,7 +1039,6 @@ class comptes_operations {
                 $sql.= ' AND `CatId` = :_catid ';
                 $values = array(
                     'id' => $_BankId,
-                    'lastid' => $_Last_id,
                     '_catid' => $_catId
                 );
             case 0:
@@ -1063,7 +1060,9 @@ class comptes_operations {
 		
 
 		//throw new Exception(__('test' . $Apointer. 'test' .$pointer, __FILE__). $_BankId);
-		$sql.= ' ORDER BY `CheckedOn` DESC LIMIT 15';
+		$sql.= ' ORDER BY `CheckedOn` DESC LIMIT ';
+        $sql.= $_offset;
+        $sql.= ',15';
 		log::add('comptes', 'debug', 'Schroll update: Requete: '.$sql);
         
         return DB::Prepare($sql, $values, DB::FETCH_TYPE_ALL, PDO::FETCH_CLASS, __CLASS__);
@@ -1084,7 +1083,7 @@ class comptes_operations {
         $pointer = $compte->getConfiguration('AffPointees');
         
         log::add('comptes', 'debug', 'FilterAction: APointer: '.$Apointer);
-        log::add('comptes', 'debug', 'FilterAction: Pointer: '.$pointer);
+        log::add('comptes', 'debugOR', 'FilterAction: Pointer: '.$pointer);
             
         $sql = 'SELECT ' . DB::buildField(__CLASS__) . '
         FROM comptes_operations

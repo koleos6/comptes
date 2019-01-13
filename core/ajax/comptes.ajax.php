@@ -111,7 +111,7 @@ try {
         $return = utils::o2a($eqLogic);
 		$return['eqLogic_id'] = init('id');
         
-        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('last_id'),init('mode'),init('filterCatId'),init('search')));
+        $return['op'] = utils::o2a(comptes_operations::getOperations_suite(init('id'), init('nb_op'),init('mode'),init('filterCatId'),init('search')));
         
 		$return['cat'] = utils::o2a(comptes_categories::all());
         $return['optPointage'] = $eqLogic->getConfiguration('ActivationPointage');
