@@ -1,3 +1,6 @@
+# xx/xx/2018 - V1.3
+- Ajout d'une fonction de recherche d'opération dans un compte
+
 # 05/08/2018 - V1.2
 - Tri sur le graphique pour grouper par catégories de même couleur. 
 - Ajout fonction de filtre sur une catégorie

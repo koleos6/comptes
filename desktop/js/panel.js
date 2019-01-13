@@ -21,7 +21,7 @@ var new_load = 0;
 
 
 var lastOpDisplayed;
-
+var OpDisplayedNb;
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
@@ -261,7 +261,7 @@ $(".filter_cat").on('click', function (event) {
                 $('DivOpUpper').remove();
                 
                 //alert(data.result.op);
-				
+				OpDisplayedNb=0;//Initalisation du nombre d'éléments affichés
 				add_new_op_in_div(data.result);
 			}
 	});	  
@@ -275,6 +275,60 @@ $(".filter_cat").on('click', function (event) {
 	
 });
 
+$(".bt_search").on('click', function (event) {
+    
+    if ($('.CptSearchModal').is(":hidden"))
+        $('.CptSearchModal').show();
+    else
+    $('.CptSearchModal').hide();
+    
+    
+    
+});
+
+
+
+$(".bt_LaunchSearch").on('click', function (event) {
+    
+    $('.CptSearchModal').hide();
+    
+    //Action 
+    $.ajax({
+			type: 'POST',
+			url: 'plugins/comptes/core/ajax/comptes.ajax.php',
+			data: {
+				action: 'getBankOperations_search',
+				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
+				id: $('#comptes_operations').attr('data-eqLogic_id'),
+                search: $(".searchField").value()
+			},
+			dataType: 'json',
+			error: function (request, status, error) {
+				handleAjaxError(request, status, error, $('#div_eventOpAlert'));
+			},
+			success: function (data) {
+				if (data.state != 'ok') {
+					$('#div_eventOpAlert').showAlert({message: data.result, level: 'danger'});
+					return;
+				}
+				//alert("reussite");
+				//alert(data.result.eqLogic_id);
+                
+                $('#comptes_operations').attr('data-mode', 2); //mode recherche
+				$('#comptes_operations').attr('data-search', data.result.search); 
+                
+                //effacement des opérations déjà présentes: 
+                $('.DivOp').remove();
+                $('.OpEdit').remove();
+                $('DivOpUpper').remove();
+                
+                //alert(data.result.op);
+				OpDisplayedNb=0;//Initalisation du nombre d'éléments affichés
+				add_new_op_in_div(data.result);
+			}
+	});	  
+    
+});
 
 //Filtrer les opérations modal
 $(".bt_filterCat").on('click', function (event) {
@@ -400,6 +454,7 @@ $('.itemAccount').on('click', function (event) {
 				
 				//Ajout des opérations
 				//add_new_op_in_tables(data, bank_id);
+                OpDisplayedNb=0;//Initalisation du nombre d'éléments affichés
 				add_new_op_in_div(data);
 				
 				
@@ -408,6 +463,7 @@ $('.itemAccount').on('click', function (event) {
 				
 				//Javascript pour la gestion d'une nouvelle opération: 
 				$('.CptNewOp').css('background-color',obj_color);
+                $('.CptSearchModal').css('background-color',obj_color);
 				$('.CptNewOp').css('opacity',0.6);
 				$('.CptNewOpModal').css('background-color',obj_color);
 				//$('.CptNewOpModal').css('opacity',0.6);
@@ -509,7 +565,9 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
 	if (!isset(cat_img.icon)) {
 		cat_img.icon = "<i class='icon plugin-comptes-billets1'><\/i>";
 	}	
-	var div = '<div class="DivOpUpper"><div class="DivOp " data-op_id="'+_op.id+'" >';
+    OpDisplayedNb++;
+    
+	var div = '<div class="DivOpUpper"><div class="DivOp " data-op_nb="'+OpDisplayedNb+'" data-op_id="'+_op.id+'" >';
 	//div += '<div>';
 	
 	lastOpDisplayed = _op.id;
@@ -1176,7 +1234,7 @@ function element_in_scroll(elem) {
 
 $('#comptes_operations').scroll(function(e){
 	//class="DivOp " data-op_id="'+_op.id+'"
-	if (element_in_scroll(".DivOp[data-op_id="+lastOpDisplayed+"]") && new_load == 0) {
+	if (element_in_scroll(".DivOp[data-op_nb="+OpDisplayedNb+"]") && new_load == 0) {
 		new_load = 1;
 		//alert("test");
 		//alert($('#comptes_operations').attr('data-eqLogic_id'));
@@ -1188,9 +1246,11 @@ $('#comptes_operations').scroll(function(e){
 				action: 'getBankOperations_suite',
 				type: isset($(this).attr('data-eqLogic_type')) ? $(this).attr('data-eqLogic_type') : eqType,
 				id: $('#comptes_operations').attr('data-eqLogic_id'),
-				last_id: lastOpDisplayed, 
+				last_id: lastOpDisplayed, //A supprimer a terme si nb_op fonctionne bien
                 mode: $('#comptes_operations').attr('data-mode'), 
-                filterCatId : $('#comptes_operations').attr('data-filterCatId')
+                filterCatId : $('#comptes_operations').attr('data-filterCatId'), 
+                search : $('#comptes_operations').attr('data-search'), 
+                nb_op : OpDisplayedNb
 			},
 			dataType: 'json',
 			error: function (request, status, error) {
