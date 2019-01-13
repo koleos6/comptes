@@ -9,8 +9,8 @@
 	"hasDependency" : false,
 	"hasOwnDeamon" : false, 
 	"maxDependancyInstallTime" : 0,
-	"changelog" : "https://jeedom.github.io/comptes/#language#/changelog", 
-	"documentation" : "https://jeedom.github.io/comptes/#language#/",
+	"changelog" : "https://koleos6.github.io/comptes/#language#/changelog", 
+	"documentation" : "https://koleos6.github.io/comptes/#language#/",
 	"language" : ["fr_FR"],
 	"compatibility" : ["miniplus","smart","rpi","docker","diy"]
 }
