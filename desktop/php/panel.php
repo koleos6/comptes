@@ -254,11 +254,7 @@ $allCats = comptes_categories::all();
 			<div style="float:right" ><i class="fa fa-search bt_search cursor"></i>&nbsp;<i class="fa fa-filter bt_filterCat cursor"></i>&nbsp;<i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
 			</div>
 			<div>
-            <div class="CptSearchModal" style="display:none">
-
-                <input class="form-control input-sm searchField" placeholder="{{Rechercher}}" style="width: 100%"/><i class="fa fa-search bt_LaunchSearch cursor"></i>
-
-            </div>
+                
 				<div class = "CptNewOp cursor tooltips" title="{{Ajouter une opération}}">
 					<i class="fa fa-plus-circle " ></i>
 				</div>
@@ -330,6 +326,12 @@ $allCats = comptes_categories::all();
 					</form>
 				</div>
 				
+                <div class="CptSearchModal" style="display:none">
+                    <span class="label_cpt_obj2" > 
+                    <div class="col-md-7" style="margin-top:15px"> <input class="form-control input-sm searchField" placeholder="{{Rechercher}}" ></div>
+                    <div class="col-md-1"><i class="fa fa-search bt_LaunchSearch cursor"></i></div>
+                    </span>
+                </div>
 			</div>
 		</div>
 

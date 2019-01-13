@@ -463,6 +463,7 @@ $('.itemAccount').on('click', function (event) {
 				
 				//Javascript pour la gestion d'une nouvelle opération: 
 				$('.CptNewOp').css('background-color',obj_color);
+                $('.CptSearchModal').css('background-color',obj_color);
 				$('.CptNewOp').css('opacity',0.6);
 				$('.CptNewOpModal').css('background-color',obj_color);
 				//$('.CptNewOpModal').css('opacity',0.6);
