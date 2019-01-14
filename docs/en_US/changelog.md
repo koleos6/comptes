@@ -1,5 +1,6 @@
-# xx/xx/2018 - V1.3
+# 13/01/2018 - V1.3
 - Ajout d'une fonction de recherche d'opération dans un compte
+- Modification de l'ordre d'affichage: passage de par id à par date de valeur
 
 # 05/08/2018 - V1.2
 - Tri sur le graphique pour grouper par catégories de même couleur. 
