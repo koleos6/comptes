@@ -1,8 +1,9 @@
 @font-face {
 	font-family: 'plugin-comptes';
-	src:url('fonts/plugin-comptes.ttf') format('truetype');
+	src:url('fonts/plugin-comptes.ttf') format('truetype'),
+        url('fonts/plugin-comptes.woff') format('woff'),
+        url('fonts/plugin-comptes.svg') format('svg');
 	font-weight: normal;
-	font-variant: normal;
 	font-style: normal;
 }
 [class^="plugin-comptes"], [class*=" plugin-comptes"] {

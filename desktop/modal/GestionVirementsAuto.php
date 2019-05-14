@@ -30,7 +30,7 @@ $eqLogics = eqLogic::byType('comptes');
 	<div class="col-lg-4">
         <div class="bs-sidebar">
             <ul id="ul_virAuto" class="nav nav-list bs-sidenav">
-                <a class="btn btn-default virAutoAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="addVirAuto"><i class="fa fa-plus-circle"></i> {{Ajouter un virement automatique}}</a>
+                <a class="btn btn-default virAutoAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="addVirAuto"><i class="fas fa-plus-circle"></i> {{Ajouter un virement automatique}}</a>
                 <li class="filter" style="margin-bottom: 5px;"><input class="filter form-control input-sm" placeholder="{{Rechercher}}" style="width: 100%"/></li>
                 <?php
 	
@@ -100,7 +100,7 @@ $eqLogics = eqLogic::byType('comptes');
 	<div class="col-lg-8 VirAuto" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
 		<form class="form-horizontal">
 			<fieldset>
-				<legend><center> <i class="fa fa-arrow-circle-left virAutoAction cursor" data-action="returnToThumbnailDisplay"></i> {{Détails}} </center> </legend>
+				<legend><center> <i class="fas fa-arrow-circle-left virAutoAction cursor" data-action="returnToThumbnailDisplay"></i> {{Détails}} </center> </legend>
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Titre}}</label>
 					<div class="col-lg-8">
@@ -160,7 +160,7 @@ $eqLogics = eqLogic::byType('comptes');
 					<div class="col-lg-8" style="height:30px">
 						<input type="text" class="VirAutoAttr form-control" value="0" data-l1key="CatId" style="display : none;"  />
 						<!--
-						<div style="float:left"><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="" data-op_id=""><i class="fa fa-th-large"></i></a></div>
+						<div style="float:left"><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="" data-op_id=""><i class="fas fa-th-large"></i></a></div>
 						-->	
 						<div style="float:left;margin-left:5px">
 						<!--
@@ -185,10 +185,10 @@ $eqLogics = eqLogic::byType('comptes');
 				</div>
 				<div class="form-actions">
 					<div class="col-sm-4 control-label">
-						<a class="btn btn-danger virAutoAction" data-action="remove"><i class="fa fa-minus-circle"></i> {{Supprimer}}</a>
+						<a class="btn btn-danger virAutoAction" data-action="remove"><i class="fas fa-minus-circle"></i> {{Supprimer}}</a>
 					</div>
 					<div class="col-lg-8" style="margin-top:7px">
-						<a class="btn btn-success virAutoAction" data-action="save"><i class="fa fa-check-circle"></i> {{Sauvegarder}}</a>
+						<a class="btn btn-success virAutoAction" data-action="save"><i class="fas fa-check-circle"></i> {{Sauvegarder}}</a>
 					</div>
 				</div>
 			</fieldset>

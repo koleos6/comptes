@@ -648,23 +648,23 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
         //Opération pointée ou non pointée affichage
         
         div += '<a class="cursor" data-l1key="Checked" data-op_id="'+_op.id+'" data-op_checked="'+_op.Checked+'">';
-        div += '<i class="fa fa-check" data-op_id="'+_op.id+'" style="color:'+color_check+';"></i></a> ';
+        div += '<i class="fas fa-check" data-op_id="'+_op.id+'" style="color:'+color_check+';"></i></a> ';
         div += '</div>';
     }
     if (optType == 1) {
         var type_icone = "";
 	
         if (init(_op.Type) == 1) {
-            type_icone += 'fa-credit-card';
+            type_icone += 'fas-credit-card';
         }
         if (init(_op.Type) == 2) {
-            type_icone += 'fa-money';
+            type_icone += 'fas-money';
         }
         if (init(_op.Type) == 3) {
             type_icone += 'techno-fleches';
         }
         div += '<div class="op_right_icon_type">';
-        div += '<i class="fa '+type_icone+'" style=""></i>';
+        div += '<i class="fas '+type_icone+'" style=""></i>';
         div += '</div>';
     }
 	div += '</div>';
@@ -731,17 +731,17 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
                             if (_op.Type == 1) {
     div += '					selected';
                             }
-    div += ' 					value=1 data-icon="fa fa-credit-card">{{Carte}}</option>';
+    div += ' 					value=1 data-icon="fas fa-credit-card">{{Carte}}</option>';
     div += '				<option ';
                             if (_op.Type == 2) {
     div += '					selected';
                             }
-    div += ' 					value=2 data-icon="fa fa-money">{{Chèque}}</option>';
+    div += ' 					value=2 data-icon="fas fa-money">{{Chèque}}</option>';
     div += '				<option '
                             if (_op.Type == 3) {
     div += '					selected';
                             }
-    div += ' 					value=3 data-icon="fa techno-fleches">{{Virement}}</option>';
+    div += ' 					value=3 data-icon="fas techno-fleches">{{Virement}}</option>';
     div += '        	</select>';
     div += '        </div>';
     div += '    </div>';
@@ -769,10 +769,10 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
 	div += '     </div>';
 	div += '     <div class="form-group form-group-sm">';
 	div += '     	<div class="col-md-5 control-label">';
-	div += "     		<a class='btn btn-primary update_op'><i class='fa fa-refresh' ></i> {{Mise à jour}}</a>";
+	div += "     		<a class='btn btn-primary update_op'><i class='fas fa-refresh' ></i> {{Mise à jour}}</a>";
 	div += '     	</div>';
 	div += '     	<div class="col-md-5 control-label">';
-	div += "     		<a class='btn btn-danger supp_op'><i class='fa fa-trash-o' ></i> {{Suppression}}</a>";
+	div += "     		<a class='btn btn-danger supp_op'><i class='far fa-trash-alt' ></i> {{Suppression}}</a>";
 	div += '     	</div>';	
 	div += '     </div>';
 	div += '     <input type="text" class="opAttr " data-l1key="hide" style="display: none;" value ="'+_op.hide+'" />';
@@ -1297,7 +1297,7 @@ operations_print = function (_params) {
 
 function addNewOpToTable(bank_id) {
 	var tr = '<tr class="op info">';
-	tr += '<td class="cpt_validated"><div class="op_validated" data-op_id="0" style="display:none" data-val=0><a class="btn btn-success"><i class="fa fa-check"></i></a></div><div class="op_notvalidated" data-op_id="0" data-val=1><a class="btn btn-danger"><i class="fa fa-check"></i></a></div><input type="text" class="opAttr form-control" data-l1key="Checked" style="display: none;" value ="0" /></td>';
+	tr += '<td class="cpt_validated"><div class="op_validated" data-op_id="0" style="display:none" data-val=0><a class="btn btn-success"><i class="fas fa-check"></i></a></div><div class="op_notvalidated" data-op_id="0" data-val=1><a class="btn btn-danger"><i class="fas fa-check"></i></a></div><input type="text" class="opAttr form-control" data-l1key="Checked" style="display: none;" value ="0" /></td>';
 	tr += '<td class=""><input type="text" class="opAttr input-comptes-new dtimepicker" data-l1key="operationDate" /></td>';
 	tr += '<td class=""><input type="text" class="opAttr input-comptes-new dtimepicker" data-l1key="CheckedOn" /></td>';
 	tr += '<td >'
@@ -1316,27 +1316,27 @@ function addNewOpToTable(bank_id) {
 	tr += ' &nbsp; <i><span style="margin-left:5px" class="opAffAttr" data-l1key="CatId" data-op_id="0" style="display: none;"></span></i></div>'
 	tr += '</td>';
 
-	//tr += '<td class=""><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="'+bank_id+'" data-op_id="0"><i class="fa fa-th-large"></i></a></td>';
+	//tr += '<td class=""><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="'+bank_id+'" data-op_id="0"><i class="fas fa-th-large"></i></a></td>';
 	/*
 	tr += '<td style="height:40px"><div style="float:left;margin-top:5px"><img height="40" width="40" data-op_id="0" style="display: none;"/>';
 	tr += '</div><div style="float:left;width:95%"><b>';
 	tr += '<input type="text" class="opAttr input-comptes-operations-new " data-l1key="BankOperation" /></b>';
 	tr += ' &nbsp; <i><span style="margin-left:5px" class="opAffAttr" data-l1key="CatId" data-op_id="0" style="display: none;"></span></i></div></td>';
 
-	tr += '<td class=""><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="'+bank_id+'" data-op_id="0"><i class="fa fa-th-large"></i></a></td>';
+	tr += '<td class=""><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="'+bank_id+'" data-op_id="0"><i class="fas fa-th-large"></i></a></td>';
 	*/
 	
 	tr += '<td>';
 	tr += '<select class="opAttr selectpicker" data-style="btn-primary" data-l1key="Type" data-width="100%">';
 	tr +=   '<option value=0 >{{Aucun}}</option>';
-    tr += 	'<option value=1 data-icon="fa fa-credit-card">{{Carte}}</option>';
-    tr += 	'<option value=2 data-icon="fa fa-money">{{Chèque}}</option>';
-    tr += 	'<option value=3 data-icon="fa techno-fleches">{{Virement}}</option>';
+    tr += 	'<option value=1 data-icon="fas fa-credit-card">{{Carte}}</option>';
+    tr += 	'<option value=2 data-icon="fas fa-money">{{Chèque}}</option>';
+    tr += 	'<option value=3 data-icon="fas techno-fleches">{{Virement}}</option>';
     tr += '</select>';
 	tr+= '</td>';
 	tr += '<td class=""><input type="text" class="opAttr input-comptes-new " data-l1key="Amount" /></td>';
 	tr += '<td class=""><input type="text" class="opAttr form-control " data-l1key="eqLogic_id" style="display: none;" value="'+bank_id+'" />';
-	tr += '<input type="text" class="opAttr form-control" data-l1key="CatId" data-op_id="0" style="display: none;" value="0" /><input type="text" class="opAttr form-control" data-l1key="hide" style="display: none;" value ="0" /><input type="text" class="opAttr input-comptes" data-l1key="id" style="display: none;" value="0" /><a class="btn btn-primary add_op" ><i class="fa fa-plus"></i></a></td>';
+	tr += '<input type="text" class="opAttr form-control" data-l1key="CatId" data-op_id="0" style="display: none;" value="0" /><input type="text" class="opAttr form-control" data-l1key="hide" style="display: none;" value ="0" /><input type="text" class="opAttr input-comptes" data-l1key="id" style="display: none;" value="0" /><a class="btn btn-primary add_op" ><i class="fas fa-plus"></i></a></td>';
     tr += '</tr>';
 
     $('#table_op tbody').append(tr);
@@ -1366,7 +1366,7 @@ function addNewOpToTable(bank_id) {
 	function addCat(_cat) {
 		var tr = '<tr class="li_cat bt_sortable" data-cat_id="' + _cat.id + '">';
 		tr += '<td>';
-		tr += '<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="' + _cat.id + '" ><i class="fa fa-flag"></i> {{Choisir}}</a>';
+		tr += '<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="' + _cat.id + '" ><i class="fas fa-flag"></i> {{Choisir}}</a>';
 		tr += '</td>';
 		tr += '<td>';
 		tr += '<input type="color" data-cat_id="' + _cat.id + '" class="catAttr form-control" data-l1key="image" data-l2key="tagColor" value="'+ _cat.tagColor +'" />';
@@ -1386,12 +1386,12 @@ function addNewOpToTable(bank_id) {
 		tr += '"/></div>';
 		tr += '</td>';
 		tr += '<td style="width: 50px;" class="move_left" data-cat_id="'+ _cat.id +'">';
-		tr += '<a class="btn btn-success move_cat_up" style="display:none"><i class="fa fa-chevron-left"></i></a>';
+		tr += '<a class="btn btn-success move_cat_up" style="display:none"><i class="fas fa-chevron-left"></i></a>';
 		tr += '</td>';
 		tr += '<td class="level_aff"  style="width: 20px;">0</td>';
-		tr += '<td style="width: 50px;"><a class="btn btn-success move_cat_down"><i class="fa fa-chevron-right"></i></a></td>';
+		tr += '<td style="width: 50px;"><a class="btn btn-success move_cat_down"><i class="fas fa-chevron-right"></i></a></td>';
 		tr += '<td>';
-		tr += '<a class="btn btn-danger supp_cat"><i class="fa fa-trash-o"></i></a>';
+		tr += '<a class="btn btn-danger supp_cat"><i class="fas fa-trash-o"></i></a>';
 		tr += '<input type="text" class="catAttr input-comptes" data-l1key="id" style="display: none;" value="'+ _cat.id +'" />';
 		tr += '<input type="text" class="catAttr input-comptes" data-l1key="level" data-cat_id="'+ _cat.id +'" style="display: none;" value="0" />';
 		tr += '</td>';
