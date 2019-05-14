@@ -57,7 +57,7 @@ $eqLogics = eqLogic::byType('comptes');
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Banque débitrice}}</label>
 					<div class="col-lg-7">
-						<select id="selectBankDebit" class="VirCompteAttr selectpicker " data-style="btn-primary" data-l1key="BankDebit" data-width="100%" >
+						<select id="selectBankDebit" class="VirCompteAttr form-control " data-style="btn-primary" data-l1key="BankDebit" data-width="100%" >
 						<?php
 				
 							foreach ($eqLogics as $eqLogic) {
@@ -71,7 +71,7 @@ $eqLogics = eqLogic::byType('comptes');
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Banque créditrice}}</label>
 					<div class="col-lg-7">
-						<select id="selectBankCredit" class="VirCompteAttr selectpicker " data-style="btn-primary" data-l1key="BankCredit" data-width="100%" >
+						<select id="selectBankCredit" class="VirCompteAttr form-control " data-style="btn-primary" data-l1key="BankCredit" data-width="100%" >
 						<?php
 				
 							foreach ($eqLogics as $eqLogic) {
@@ -220,7 +220,7 @@ $('.image_catCredit').on('click', function () {
 
 
 
-$('.selectpicker').selectpicker();
+//$('.selectpicker').selectpicker();
 
 
 

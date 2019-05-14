@@ -293,7 +293,7 @@ $allCats = comptes_categories::all();
 						 <div id="NewOpOptionType" class="form-group form-group-sm">
 							<label class="col-md-5 control-label">{{Type}}</label>
 							<div class="col-md-7">
-								<select class="opAttr selectpicker" data-style="btn-primary" data-l1key="Type" data-width="65%">
+								<select class="opAttr form-control" data-style="btn-primary" data-l1key="Type" data-width="65%">
 									<option value=0 >{{Aucun}}</option>
 									<option value=1 data-icon="fas fa-credit-card">{{Carte}}</option>
 									<option value=2 data-icon="fas fa-money">{{Chèque}}</option>

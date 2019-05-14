@@ -721,7 +721,7 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
     }
     div += '        <label class="col-md-5 control-label">{{Type}}</label>';
     div += '        <div class="col-md-7">';
-    div += '        	<select class="opAttr selectpicker" data-style="btn-primary" data-l1key="Type" data-width="65%">';
+    div += '        	<select class="opAttr form-control" data-style="btn-primary" data-l1key="Type" data-width="65%">';
     div += '				<option ';
                             if (_op.Type == 0) {
     div += '					selected';
@@ -909,7 +909,7 @@ function add_new_op_in_div(data) {
                 }
 							
 				//Affichage du menu déroulant (layout)
-				$('.selectpicker').selectpicker();
+				//$('.selectpicker').selectpicker();
 				//Action quand click sur bouton de mise à jour
 				$('.update_op').on('click', function (event) {
 					var ComptesOperation = $(this).closest('.OpEdit').getValues('.opAttr');

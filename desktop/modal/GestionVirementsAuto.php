@@ -143,7 +143,7 @@ $eqLogics = eqLogic::byType('comptes');
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Banque}}</label>
 					<div class="col-lg-8">
-						<select id="selectBank" class="VirAutoAttr selectpicker " data-style="btn-primary" data-l1key="eqLogic_id" data-width="100%" >
+						<select id="selectBank" class="VirAutoAttr form-control " data-style="btn-primary" data-l1key="eqLogic_id" data-width="100%" >
 						<option  value="0"> {{Aucune}}</option>
 						<?php
 				
@@ -305,6 +305,7 @@ $(".li_VirAuto").on('click', function () {
 	$('.VirAutoAttr[data-l1key=CatId]').value($(this).attr('data-vir_auto_catid'));
 	$('.VirAutoAttr[data-l1key=compteur_frequence]').value($(this).attr('data-vir_auto_compteur_frequence'));
 	
+    //Core V4 TODO : trouver commentre mettre à jour
 	$('#selectBank').selectpicker('val', $(this).attr('data-vir_auto_eqlogic_id'));
 	
 	
