@@ -22,15 +22,15 @@ $allCats = comptes_categories::all();
 <div id="md_modalComptes2"></div>
 <div id="md_modalComptes3"></div>
 <div id="md_modalComptes4"></div>
-
 <div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" id="bt_displayComptes"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
 
-<div class="row row-overflow" id="div_comptes" >
+
+<div class="row row-overflow">
 	<!-- Partie menu gauche -->
-	<div class="col-lg-2" id="sd_ComptesList" style="z-index:999">
+	<div class="col-lg-2 col-md-3 col-sm-4" id="sd_ComptesList" style="z-index:999">
         <div class="bs-sidebar">
-            <ul id="ul_comptes" class="nav nav-list ">
-                
+            <!-- <ul id="ul_comptes" class="nav nav-list bs-sidenav"> -->
+            <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">   
 				<legend><center>{{Mes Comptes Actifs}}</center></legend>
                 
                 <!--<table class="table-hover comptes_list">-->
@@ -59,7 +59,7 @@ $allCats = comptes_categories::all();
 							$minilogo = $bank->getLogo_mini_name();
 						}
                         //echo '<tr>';
-						echo '<li class="cursor compte_menu_item itemAccount" data-eqLogic_id="' . $eqLogic->getId() . '" data-soldereel="'. $eqLogic->computeSolde() .'" data-apointer="'. $eqLogic->computeAPointer() .'" data-soldefinmois="'. $eqLogic->computeSoldeFinDeMois() .'" data-color-obj="' . $color .'" data-bt_APointer="' . $bt_APointer .'" data-bt_Pointer="' . $bt_Pointer .'"data-color-obj-text="' .$color_obj_text .'" data-name="' . $name .'" data-devise="' . $devise .'" data-minilogo="' . $minilogo .'" data-optPointage="' . $OptionPointage .'" data-optType="' . $OptionType .'" data-optDateUnique="' . $OptionDateUnique . '">';
+						echo '<li class="cursor compte_menu_item itemAccount li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '" data-soldereel="'. $eqLogic->computeSolde() .'" data-apointer="'. $eqLogic->computeAPointer() .'" data-soldefinmois="'. $eqLogic->computeSoldeFinDeMois() .'" data-color-obj="' . $color .'" data-bt_APointer="' . $bt_APointer .'" data-bt_Pointer="' . $bt_Pointer .'"data-color-obj-text="' .$color_obj_text .'" data-name="' . $name .'" data-devise="' . $devise .'" data-minilogo="' . $minilogo .'" data-optPointage="' . $OptionPointage .'" data-optType="' . $OptionType .'" data-optDateUnique="' . $OptionDateUnique . '">';
 						//echo '<li class="cursor li_eqLogic compte_menu_item" data-eqLogic_id="' . $eqLogic->getId() . '">';
 						echo '<a>';
 						echo '<span class="label_cpt_obj" style="text-shadow : none;background-color:'. $color .';color:' . $color_obj_text .';">';
@@ -84,8 +84,12 @@ $allCats = comptes_categories::all();
 
             </ul>
 			<br />
-			<center>
+            <center>
+            <!--
+			
 			<legend></legend>
+            
+            -->
 			<!--
 			
 			<form class="form-horizontal" method="post" enctype="multipart/form-data">
@@ -103,7 +107,7 @@ $allCats = comptes_categories::all();
 			margin-bottom : 10px;
 			margin-left : 10px;
 			-->
-			<div class="col-lg-2 col-md-3 col-sm-4 eqLogicThumbnailContainer" style="width : 500px;">
+			<div class="col-lg-2 col-md-3 col-sm-4" style="width : 500px;">
 			<div class="cursor bt_ManageCat" style="margin-left : -15px;margin-top:-15px;height : 60px;padding : 5px;border-radius: 2px;width : 60px;" >
 				<center>
 					<i class="plugin-comptes-dircats" style="font-size : 3em;color:#C266C2;" data-toggle="tooltip" title="{{Gestion des catégories}}"></i>
@@ -139,8 +143,9 @@ $allCats = comptes_categories::all();
 		<br />
 		<!--
 			<a id="bt_testCron" class="btn btn-primary" data-default-id="" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas techno-fleches"></i> {{Test}}</a>
-			<br />-->
-			<legend></legend>
+			<br />
+            <legend></legend>-->
+			
 			<br />
 			<!--
 			<ul id="ul_infos_comptes" class="nav nav-list " style="display:none">
@@ -162,7 +167,8 @@ $allCats = comptes_categories::all();
 			</div>
     </div>
 	<!-- Partie Page d'acceuil -->
-	<div class="col-lg-10" id="comptes_msg_debut" style="border-left: solid 1px #EEE; padding-left: 25px;">
+    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" id="comptes_msg_debut"  style="border-left: solid 1px #EEE; padding-left: 25px;">
+	<!--<div class="col-lg-10" id="comptes_msg_debut" style="border-left: solid 1px #EEE; padding-left: 25px;">-->
         <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor bt_ManageCat" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
@@ -344,7 +350,7 @@ $allCats = comptes_categories::all();
 			<div class="opContainer" class="">
 			</div>
         -->
-			<table id="table_op" class="">
+			<table id="table_op" class="" style="margin-left:10px">
                 
                 <tbody>
 
@@ -361,9 +367,9 @@ $allCats = comptes_categories::all();
 		<span class="badge tooltips" title="{{Solde Réel}}" style="background-color : #fcc505;font-size: 30px;min-width:180px">
 			<span id="solde_reel" ></span> <span class="affDevise" ></span>			
 		</span>
-        <div id="FinDeMoisAffichage">
+        <div id="FinDeMoisAffichage" style="margin-top:10px">
             <span class="badge tooltips" title="{{Solde à la fin du mois}}" style="background-color : #fcc505;"> 
-                Fin de mois: <span id="solde_fin_mois"></span> <span class="affDevise" ></span>
+                {{Fin de mois: }}<span id="solde_fin_mois"></span> <span class="affDevise" ></span>
             </span> 
         </div>
 		<div><i id="refreshAmounts" class="fas fa-refresh"> </i> </div>

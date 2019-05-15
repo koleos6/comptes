@@ -42,7 +42,7 @@ $(document).ready(function(){
 });
 
 
-if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch){
+if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1) && !jQuery.support.touch && $('.eqLogicThumbnailDisplay').html() != undefined){
     $('#sd_ComptesList').hide();
     $('#comptes_msg_debut').removeClass('col-lg-10').addClass('col-lg-12');
     $('#comptes_operations').removeClass('col-lg-7').addClass('col-lg-9');
@@ -75,6 +75,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
   clearTimeout($(this).data('timerMouseleave'));
 });
 }
+
 
 /* Fonctions du menu à gauche */ 
 //Bouton de test : désactivé sauf en cas d'essais
