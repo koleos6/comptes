@@ -86,7 +86,8 @@
         "Nom de la catégorie": "Nom de la catégorie",
         "Niveau": "Niveau",
         "Action": "Action",
-        "Choisir": "Choisir"
+        "Choisir": "Choisir",
+        "Fin de mois: ": "Fin de mois: "
     },
     "plugins\/comptes\/desktop\/modal\/GestionVirementsAuto.php": {
         "Ajouter un virement automatique": "Ajouter un virement automatique",
