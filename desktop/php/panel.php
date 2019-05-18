@@ -3,7 +3,7 @@ if (!isConnect()) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-
+include_file('desktop', 'comptes_icons', 'css', 'comptes'); 
 include_file('3rdparty', 'bootstrap-select/dist/css/bootstrap-select', 'css', 'comptes'); 
 include_file('3rdparty', 'bootstrap-select/dist/css/bootstrap-select.min', 'css', 'comptes'); 
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css', 'comptes');
@@ -22,11 +22,15 @@ $allCats = comptes_categories::all();
 <div id="md_modalComptes2"></div>
 <div id="md_modalComptes3"></div>
 <div id="md_modalComptes4"></div>
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" id="bt_displayComptes"><i class="far fa-arrow-alt-circle-right" style="color : #b6b6b6;"></i></div>
+
+
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;" id="bt_displayComptes"><i class="far fa-arrow-alt-circle-right" ></i></div>
 
 
 <div class="row row-overflow">
 	<!-- Partie menu gauche -->
+    <!-- core V4 TODO: a supprimer ? attention aux données stockées ? -->
+    
 	<div class="col-lg-2 col-md-3 col-sm-4" id="sd_ComptesList" style="z-index:999">
         <div class="bs-sidebar">
             <!-- <ul id="ul_comptes" class="nav nav-list bs-sidenav"> -->

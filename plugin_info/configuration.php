@@ -99,6 +99,7 @@ $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
 	if (!file_exists($pluginfontdir)) {
 		$result = mkdir($pluginfontdir, 0777, true);
 	}
+    
 	if (!file_exists($plugincomptesdir.'/style.css')) {
 		$status=copy(dirname(__FILE__).'/fonts/style.css',$plugincomptesdir.'/style.css'); 
 	}
@@ -111,9 +112,8 @@ $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
     if (!file_exists($pluginfontdir.'/plugin-comptes.woff')) {
 		$status=copy(dirname(__FILE__).'/fonts/plugin-comptes.woff',$pluginfontdir.'/plugin-comptes.woff'); 
 	}
-	
-	
-?>
+
+   ?>
 <form class="form-horizontal">
     <fieldset>
 		<div class="form-group">

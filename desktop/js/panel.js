@@ -77,6 +77,7 @@ if((!isset(userProfils.doNotAutoHideMenu) || userProfils.doNotAutoHideMenu != 1)
 }
 
 
+
 /* Fonctions du menu à gauche */ 
 //Bouton de test : désactivé sauf en cas d'essais
 $('#bt_testCron').on('click', function () {
