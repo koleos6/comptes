@@ -699,7 +699,7 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
 	div += '    </div>';
 	div += '    <div class="form-group form-group-sm">';
 	div += '        <label class="col-md-5 control-label">{{Catégorie}}</label>';
-	div += '        <div class="col-md-7" style="height:30px;font-size: 14px;">';
+	div += '        <div class="col-md-7" style="height:40px;font-size: 14px;">';
 	div += '        	<input type="text" class="opAttr form-control" data-l1key="CatId" data-op_id="'+_op.id+'" style="display: none;" value="'+_op.CatId +'" />';	
 	div += '        	<div style="float:left;margin-left:5px">';
 	div += '        		<div class="image_cat_edit" data-op_id="'+_op.id+'" style="font-size : 2em;color:' + cat_img.tagTextColor
@@ -722,7 +722,7 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
         div += '    <div class="form-group form-group-sm hidden">';
     }
     div += '        <label class="col-md-5 control-label">{{Type}}</label>';
-    div += '        <div class="col-md-7">';
+    div += '        <div class="col-md-5">';
     div += '        	<select class="opAttr form-control" data-style="btn-primary" data-l1key="Type" data-width="65%">';
     div += '				<option ';
                             if (_op.Type == 0) {
