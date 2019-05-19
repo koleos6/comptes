@@ -132,6 +132,7 @@
   display: block;
   width: 100%;
   padding: 0;
+  margin-left: 10px;
   margin-bottom: 20px;
   font-size: 21px;
   line-height: inherit;
@@ -155,10 +156,6 @@
 }
 
 
-.table_operation,
-.table_cat td{
-    background-color: #f8f8f8;
-}
 
 .table-bordered-comptes th,
 .table-bordered-comptes td {

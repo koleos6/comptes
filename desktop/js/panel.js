@@ -657,16 +657,16 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
         var type_icone = "";
 	
         if (init(_op.Type) == 1) {
-            type_icone += 'fas-credit-card';
+            type_icone += 'far fa-credit-card';
         }
         if (init(_op.Type) == 2) {
-            type_icone += 'fas-money';
+            type_icone += 'far fa-money-bill-alt';
         }
         if (init(_op.Type) == 3) {
             type_icone += 'techno-fleches';
         }
         div += '<div class="op_right_icon_type">';
-        div += '<i class="fas '+type_icone+'" style=""></i>';
+        div += '<i class="'+type_icone+'" style=""></i>';
         div += '</div>';
     }
 	div += '</div>';
@@ -733,17 +733,17 @@ function addOpToTable(_op,_cats, optPointage, optType, optionDateUnique) {
                             if (_op.Type == 1) {
     div += '					selected';
                             }
-    div += ' 					value=1 data-icon="fas fa-credit-card">{{Carte}}</option>';
+    div += ' 					value=1 data-icon="far fa-credit-card">{{Carte}}</option>';
     div += '				<option ';
                             if (_op.Type == 2) {
     div += '					selected';
                             }
-    div += ' 					value=2 data-icon="fas fa-money">{{Chèque}}</option>';
+    div += ' 					value=2 data-icon="far fa-money-bill-alt">{{Chèque}}</option>';
     div += '				<option '
                             if (_op.Type == 3) {
     div += '					selected';
                             }
-    div += ' 					value=3 data-icon="fas techno-fleches">{{Virement}}</option>';
+    div += ' 					value=3 data-icon="techno-fleches">{{Virement}}</option>';
     div += '        	</select>';
     div += '        </div>';
     div += '    </div>';
@@ -1331,9 +1331,9 @@ function addNewOpToTable(bank_id) {
 	tr += '<td>';
 	tr += '<select class="opAttr selectpicker" data-style="btn-primary" data-l1key="Type" data-width="100%">';
 	tr +=   '<option value=0 >{{Aucun}}</option>';
-    tr += 	'<option value=1 data-icon="fas fa-credit-card">{{Carte}}</option>';
-    tr += 	'<option value=2 data-icon="fas fa-money">{{Chèque}}</option>';
-    tr += 	'<option value=3 data-icon="fas techno-fleches">{{Virement}}</option>';
+    tr += 	'<option value=1 data-icon="far fa-credit-card">{{Carte}}</option>';
+    tr += 	'<option value=2 data-icon="far fa-money-bill-alt">{{Chèque}}</option>';
+    tr += 	'<option value=3 data-icon="techno-fleches">{{Virement}}</option>';
     tr += '</select>';
 	tr+= '</td>';
 	tr += '<td class=""><input type="text" class="opAttr input-comptes-new " data-l1key="Amount" /></td>';

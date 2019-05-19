@@ -29,6 +29,26 @@ function comptes_update() {
 
 function comptes_remove() {
     
+    //suppressions des fichiers de la police "icon plugins-comptes" installées dans le core jeedom
+    $plugincomptesdir = dirname(__FILE__) . '/../../../core/css/icon/plugin-comptes';
+    $pluginfontdir = dirname(__FILE__) . '/../../../core/css/icon/plugin-comptes/fonts';
+ 
+    if (file_exists($plugincomptesdir.'/style.css')) {
+		$status=unlink($plugincomptesdir.'/style.css'); 
+	}
+	if (file_exists($pluginfontdir.'/plugin-comptes.ttf')) {
+		$status=unlink($pluginfontdir.'/plugin-comptes.ttf'); 
+	}
+    if (file_exists($pluginfontdir.'/plugin-comptes.svg')) {
+		$status=unlink($pluginfontdir.'/plugin-comptes.svg'); 
+	}
+    if (file_exists($pluginfontdir.'/plugin-comptes.woff')) {
+		$status=unlink($pluginfontdir.'/plugin-comptes.woff'); 
+	}
+    
+    $status=rmdir($pluginfontdir);
+    $status=rmdir($plugincomptesdir);
+    
 }
 
 

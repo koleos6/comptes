@@ -88,7 +88,6 @@ $allCats = comptes_categories::all();
 
             </ul>
 			<br />
-            <center>
             <!--
 			
 			<legend></legend>
@@ -111,7 +110,15 @@ $allCats = comptes_categories::all();
 			margin-bottom : 10px;
 			margin-left : 10px;
 			-->
-			<div class="col-lg-2 col-md-3 col-sm-4" style="width : 500px;">
+			<div class="col-lg-2 col-md-3 col-sm-4" style="width:250px;">
+            <center>
+                <i class="plugin-comptes-dircats bt_ManageCat" style="font-size : 3em;color:#C266C2;" data-toggle="tooltip" title="{{Gestion des catégories}}"></i>
+                <i class="plugin-comptes-vir-auto bt_ManageVirementsAuto" style="font-size : 3em;color:#767676;margin-left:20px;" data-toggle="tooltip" title="{{Gestion des virements automatiques}}"></i>
+                <i class="plugin-comptes-double-fleche bt_VirBank" style="font-size : 3em;color:#3399FF;margin-left:10px;" data-toggle="tooltip" title="{{Virement Banque à Banque}}"></i>
+                <i class="plugin-comptes-stats1 bt_RefreshGraph" style="font-size : 3em;color:#767676;margin-left:10px;" data-toggle="tooltip" title="{{Forcer la mise à jour des historiques}}"></i>
+            </center>
+            </div>
+            <!--
 			<div class="cursor bt_ManageCat" style="margin-left : -15px;margin-top:-15px;height : 60px;padding : 5px;border-radius: 2px;width : 60px;" >
 				<center>
 					<i class="plugin-comptes-dircats" style="font-size : 3em;color:#C266C2;" data-toggle="tooltip" title="{{Gestion des catégories}}"></i>
@@ -142,8 +149,7 @@ $allCats = comptes_categories::all();
 			<!--
 
 			-->
-			</div>
-			</center>
+			
 		<br />
 		<!--
 			<a id="bt_testCron" class="btn btn-primary" data-default-id="" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas techno-fleches"></i> {{Test}}</a>
@@ -171,7 +177,7 @@ $allCats = comptes_categories::all();
 			</div>
     </div>
 	<!-- Partie Page d'acceuil -->
-    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" id="comptes_msg_debut"  style="border-left: solid 1px #EEE; padding-left: 25px;">
+    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" id="comptes_msg_debut" >
 	<!--<div class="col-lg-10" id="comptes_msg_debut" style="border-left: solid 1px #EEE; padding-left: 25px;">-->
         <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
@@ -255,9 +261,8 @@ $allCats = comptes_categories::all();
     
     
 	<!-- Partie Gestion des opérations d'un compte -->
-	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0 data-search="">
-		<legend class="cpt_legend">
-		<div class="HeaderContainer">
+	<div  class="col-lg-9" id="comptes_operations" style="display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0 data-search="">
+		<div class="HeaderContainer cpt_legend">
 			<div class="CptTitle">
 			
 			<span  class="label_cpt_obj2" ><i class="fas fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> <span id="cpt_obj"  ></span> - <span id="cpt_title"></span>&nbsp;</span>
@@ -345,7 +350,6 @@ $allCats = comptes_categories::all();
 			</div>
 		</div>
 
-		</legend>
 		<div class="row">
 		
 			<div id='div_eventOpAlert' style="display: none;"></div>
@@ -409,18 +413,16 @@ $allCats = comptes_categories::all();
 </div>
 	
 	<!-- Partie Gestion des catégories -->
-	<div  class="col-lg-10" id="comptes_categories" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;">
+	<div  class="col-lg-10" id="comptes_categories" style="display:none;">
 	<form class="form-horizontal">
         <fieldset>
 			<legend>
-			<center>
 			<i class="fas fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> {{Gestion des catégories}}
-			</center>
 			</legend>
 		
-			<table id="ul_Gestcat" class="table table-bordered table-hover table_cat table-bordered-comptes">
-			<thead>
-				<tr class="bg-primary">
+			<table id="ul_Gestcat" class="table table-condensed table-hover ">
+			<thead >
+				<tr class="table-primary"> 
 					<th style="width: 60px;">{{Icone}}</th>
 					<th style="width: 55px;">{{Couleur fond}}</th>
 					<th style="width: 55px;">{{Couleur icone}}</th>
