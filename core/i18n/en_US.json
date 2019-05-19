@@ -162,7 +162,16 @@
         "Aucune": "Aucune",
         "Icone": "Icone",
         "Supprimer": "Supprimer",
-        "Sauvegarder": "Sauvegarder"
+        "Sauvegarder": "Sauvegarder",
+        "Ajouter": "Ajouter",
+        "Configuration avancée": "Configuration avancée",
+        "Dupliquer": "Dupliquer",
+        "Compte": "Compte",
+        "Commandes": "Commandes",
+        "Ajouter une commande": "Ajouter une commande",
+        "Nom": "Nom",
+        "Email": "Email",
+        "Action": "Action"
     },
     "plugins\/comptes\/core\/ajax\/comptes.ajax.php": {
         "{{Aucune opération correspondant à : ": "{{Aucune opération correspondant à : "
