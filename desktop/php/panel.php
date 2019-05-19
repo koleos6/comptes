@@ -290,7 +290,7 @@ $allCats = comptes_categories::all();
 						 </div>
 						 <div class="form-group form-group-sm">
 							<label class="col-md-5 control-label">{{Catégorie}}</label>
-							<div class="col-md-7" style="height:30px;font-size: 14px;">
+							<div class="col-md-7" style="height:40px;font-size: 14px;">
 								<input type="text" class="opAttr form-control" data-l1key="CatId" data-op_id="0" style="display: none;" value="0" />	
 								<div style="float:left;margin-left:5px">
 									<div class="image_cat_new" data-op_id="0" style="font-size : 2em;color:#FFF;border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:#c266c2;" ><i class="icon plugin-comptes-billets1"></i></div>
@@ -307,7 +307,7 @@ $allCats = comptes_categories::all();
 						 </div>
 						 <div id="NewOpOptionType" class="form-group form-group-sm">
 							<label class="col-md-5 control-label">{{Type}}</label>
-							<div class="col-md-7">
+							<div class="col-md-5">
 								<select class="opAttr form-control" data-style="btn-primary" data-l1key="Type" data-width="65%">
 									<option value=0 >{{Aucun}}</option>
 									<option value=1 data-icon="fas fa-credit-card">{{Carte}}</option>
