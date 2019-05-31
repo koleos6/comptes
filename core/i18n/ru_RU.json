@@ -214,5 +214,8 @@
         "Un compte bancaire d'origine (débit) doit être sélectionné": "Un compte bancaire d'origine (débit) doit être sélectionné",
         "Un compte bancaire de destination (crédit) doit être sélectioné": "Un compte bancaire de destination (crédit) doit être sélectioné",
         "Virement auto sauvegardé avec succès": "Virement auto sauvegardé avec succès"
+    },
+    "plugins\/comptes\/desktop\/modal\/categories.php": {
+        "Rechercher": "Rechercher"
     }
 }
