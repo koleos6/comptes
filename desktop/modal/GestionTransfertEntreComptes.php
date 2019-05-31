@@ -220,7 +220,7 @@ $('.image_catCredit').on('click', function () {
 
 
 
-//$('.selectpicker').selectpicker();
+
 
 
 

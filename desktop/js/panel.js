@@ -911,7 +911,7 @@ function add_new_op_in_div(data) {
                 }
 							
 				//Affichage du menu déroulant (layout)
-				//$('.selectpicker').selectpicker();
+
 				//Action quand click sur bouton de mise à jour
 				$('.update_op').on('click', function (event) {
 					var ComptesOperation = $(this).closest('.OpEdit').getValues('.opAttr');
@@ -920,7 +920,7 @@ function add_new_op_in_div(data) {
 					if (ComptesOperation.id != 0) {
 						
 						updateOperation(ComptesOperation);
-						$('#ul_comptes .itemAccount[data-eqLogic_id='+bank_id+']').click();
+						$('#ul_eqLogic .itemAccount[data-eqLogic_id='+bank_id+']').click();
 						
 					}	
 					
@@ -947,7 +947,7 @@ function add_new_op_in_div(data) {
 								$('#div_eventOpAlert').showAlert({message: data.result, level: 'danger'});
 								return;
 							}
-							$('#ul_comptes .itemAccount[data-eqLogic_id='+bank_id+']').click();
+							$('#ul_eqLogic .itemAccount[data-eqLogic_id='+bank_id+']').click();
 						}
 					});
 					
@@ -1099,7 +1099,7 @@ function add_new_op_in_div(data) {
 								$('.opAttr[data-l1key=Amount][data-op_id='+data.result.id+']').show();
 							}
 							
-							//$('#ul_comptes .li_eqLogic[data-eqLogic_id='+bank_id+']').click();
+							//$('#ul_eqLogic .li_eqLogic[data-eqLogic_id='+bank_id+']').click();
 						}
 					});
 					
@@ -1218,7 +1218,7 @@ $('.btn.btn-primary.add_op').on('click', function (event) {
 				50
 			);
 			$('.CptNewOp').click();
-			$('#ul_comptes .itemAccount[data-eqLogic_id='+ComptesOperation.eqLogic_id+']').click();
+			$('#ul_eqLogic .itemAccount[data-eqLogic_id='+ComptesOperation.eqLogic_id+']').click();
 		}
 	});
 	
@@ -1329,7 +1329,7 @@ function addNewOpToTable(bank_id) {
 	*/
 	
 	tr += '<td>';
-	tr += '<select class="opAttr selectpicker" data-style="btn-primary" data-l1key="Type" data-width="100%">';
+	tr += '<select class="opAttr" data-style="btn-primary" data-l1key="Type" data-width="100%">';
 	tr +=   '<option value=0 >{{Aucun}}</option>';
     tr += 	'<option value=1 data-icon="far fa-credit-card">{{Carte}}</option>';
     tr += 	'<option value=2 data-icon="far fa-money-bill-alt">{{Chèque}}</option>';
@@ -1628,7 +1628,7 @@ function addNewOpToTable(bank_id) {
 					return;
 				}
 				//$('#div_CatAlert').showAlert({message: '{{Catégorie supprimée avec succès}}', level: 'success'});
-				$('#ul_comptes .itemAccount[data-eqLogic_id='+bank_id+']').click();
+				$('#ul_eqLogic .itemAccount[data-eqLogic_id='+bank_id+']').click();
 			}
 		});	
 	});
@@ -1817,7 +1817,7 @@ function addNewOpToTable(bank_id) {
 					return;
 				}
 				//$('#div_CatAlert').showAlert({message: '{{Catégorie supprimée avec succès}}', level: 'success'});
-				//$('#ul_comptes .itemAccount[data-eqLogic_id='+bank_id+']').click();
+				//$('#ul_eqLogic .itemAccount[data-eqLogic_id='+bank_id+']').click();
 			}
 		});	
 	});

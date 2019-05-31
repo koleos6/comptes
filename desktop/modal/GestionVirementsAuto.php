@@ -27,7 +27,7 @@ $eqLogics = eqLogic::byType('comptes');
 
 <div id='div_VirementAlert' style="display: none;"></div>
 <div class="row row-overflow">
-	<div class="col-lg-4">
+	<div class="col-lg-5">
         <div class="bs-sidebar">
             <ul id="ul_virAuto" class="nav nav-list bs-sidenav">
                 <a class="btn btn-default virAutoAction" style="width : 100%;margin-top : 5px;margin-bottom: 5px;" data-action="addVirAuto"><i class="fas fa-plus-circle"></i> {{Ajouter un virement automatique}}</a>
@@ -72,6 +72,7 @@ $eqLogics = eqLogic::byType('comptes');
 						$cat_img = "";
 						$cat_txt = "";
 					}
+                    //log::add('comptes', 'debug', $vir_auto->getEqLogic_id());
                     echo '<li class="cursor li_VirAuto bt_sortable" data-vir_auto_id="' . $vir_auto->getId() . '" data-vir_auto_eqLogic_id="' . $vir_auto->getEqLogic_id() . '" data-vir_auto_catid="' . $vir_auto->getCatId() 
 					. '" data-vir_auto_title="' . $vir_auto->getTitle() . '" data-vir_auto_reference="' . $vir_auto->getReference() . '" data-vir_auto_amount="' . $vir_auto->getAmount() 
 					. '" data-vir_auto_startdate="' . $vir_auto->getStartDate() . '" data-vir_auto_enddate="' . $vir_auto->getEndDate() . '" data-vir_auto_position="' . $vir_auto->getPosition() 
@@ -90,14 +91,14 @@ $eqLogics = eqLogic::byType('comptes');
         </div>
     </div>
 	
-	<div class="col-lg-8 VirAutoThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px; " >
+	<div class="col-lg-7 VirAutoThumbnailDisplay" style="border-left: solid 1px #EEE; padding-left: 25px; " >
         <legend><center>{{Message}}</center>
         </legend>
         <br/><br/><br/>
 		<center><span style='color:#767676;font-size:1.2em;font-weight: bold;'>{{Sélectionnez un virement automatique sur la gauche}}</span></center>
     </div>
 	
-	<div class="col-lg-8 VirAuto" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
+	<div class="col-lg-7 VirAuto" style="border-left: solid 1px #EEE; padding-left: 25px;display: none;">
 		<form class="form-horizontal">
 			<fieldset>
 				<legend><center> <i class="fas fa-arrow-circle-left virAutoAction cursor" data-action="returnToThumbnailDisplay"></i> {{Détails}} </center> </legend>
@@ -143,7 +144,7 @@ $eqLogics = eqLogic::byType('comptes');
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Banque}}</label>
 					<div class="col-lg-8">
-						<select id="selectBank" class="VirAutoAttr form-control " data-style="btn-primary" data-l1key="eqLogic_id" data-width="100%" >
+						<select id="selectBank" class="VirAutoAttr form-control" data-style="btn-primary" data-l1key="eqLogic_id" data-width="100%" >
 						<option  value="0"> {{Aucune}}</option>
 						<?php
 				
@@ -157,7 +158,7 @@ $eqLogics = eqLogic::byType('comptes');
 				</div>
 				<div class="form-group" >
 					<label class="col-sm-4 control-label">{{Catégorie}}</label>
-					<div class="col-lg-8" style="height:30px">
+					<div class="col-lg-8" style="height:40px">
 						<input type="text" class="VirAutoAttr form-control" value="0" data-l1key="CatId" style="display : none;"  />
 						<!--
 						<div style="float:left"><a class="btn btn-primary bt_sel_cat" data-eqLogic_id="" data-op_id=""><i class="fas fa-th-large"></i></a></div>
@@ -166,7 +167,8 @@ $eqLogics = eqLogic::byType('comptes');
 						<!--
 						<img id="img_cat" data-img_name="" height="34" width="34" style="display:none"/>
 						-->
-						<div class="image_cat_va" style="font-size : 2em;color:#FFF;border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:#c266c2;" ><i class="icon plugin-comptes-billets1"></i></div>
+						<div class="image_cat_va" style="font-size : 2em;color:#FFF;border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:#c266c2;" ><i class="icon plugin-comptes-billets1"></i>
+                        </div>
 						</div><div id="text_cat_upper" style="float:left;margin-top:8px;margin-left:5px"></div><div id="text_cat" style="float:left;margin-top:8px;margin-left:5px"></div>
 						
 					</div>
@@ -294,6 +296,8 @@ $(".li_VirAuto").on('click', function () {
 		$('.VirAutoThumbnailDisplay').hide();
 	}
 	
+    
+    
 	//affichage des infos:
 	$('.VirAutoAttr[data-l1key=id]').value($(this).attr('data-vir_auto_id'));
 	$('.VirAutoAttr[data-l1key=position]').value($(this).attr('data-vir_auto_position'));
@@ -304,26 +308,12 @@ $(".li_VirAuto").on('click', function () {
 	$('.VirAutoAttr[data-l1key=EndDate]').value($(this).attr('data-vir_auto_enddate'));
 	$('.VirAutoAttr[data-l1key=CatId]').value($(this).attr('data-vir_auto_catid'));
 	$('.VirAutoAttr[data-l1key=compteur_frequence]').value($(this).attr('data-vir_auto_compteur_frequence'));
-	
-    //Core V4 TODO : trouver commentre mettre à jour
-	$('#selectBank').selectpicker('val', $(this).attr('data-vir_auto_eqlogic_id'));
-	
-	
-	//var new_img = $(this).attr('data-vir_auto_cat_img_src');
+	$('#selectBank').value($(this).attr('data-vir_auto_eqlogic_id'));
+    
 	var cat_img = {};
 	var new_text= $(this).attr('data-vir_auto_cat_name');
 	var new_text_upper= $(this).attr('data-vir_auto_cat_upper_level_name');
-	/*
-	if (new_img != '') {
-		var new_img_path="plugins/comptes/images/categories/" + new_img;
-		$('#img_cat').attr('src',new_img_path);
-		$('#img_cat').attr('data-img_name',new_img);
-		$('#img_cat').show();
-	}
-	else {
-		$('#img_cat').hide();
-	}
-	*/
+
 	if ($(this).attr('data-vir_auto_catid') != 0)
 	{
 		cat_img.tagTextColor = $(this).attr('data-vir_auto_cat_imgTatTextColor');
@@ -360,7 +350,7 @@ $(".li_VirAuto").on('click', function () {
 	
 });
 
-$('.selectpicker').selectpicker();
+
 
 jwerty.key('ctrl+s', function (e) {
     e.preventDefault();

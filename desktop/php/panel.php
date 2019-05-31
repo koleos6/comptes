@@ -4,8 +4,6 @@ if (!isConnect()) {
 }
 
 include_file('desktop', 'comptes_icons', 'css', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/css/bootstrap-select', 'css', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/css/bootstrap-select.min', 'css', 'comptes'); 
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css', 'comptes');
 include_file('desktop', 'panel', 'css', 'comptes'); 
 include_file('3rdparty', 'c3/c3', 'css', 'comptes'); 
@@ -386,7 +384,7 @@ $allCats = comptes_categories::all();
 		<br />
 		<br />
 		<center>
-		<legend>{{Graphiques}}</legend>
+		<legend><center>{{Graphiques}}</center></legend>
 			<a class="move_date_left"><i class="fas fa-chevron-left"></i></a>
 			<span id="chart_title" data-date-pie-chart="<?php echo date('Y-m-01', strtotime('now'))?>"></span>
 			<a class="move_date_right" style="display:none"><i class="fas fa-chevron-right"></i></a>
@@ -464,16 +462,10 @@ $allCats = comptes_categories::all();
                         
                         echo '<tr class="li_cat bt_sortable" data-cat_id="' . $cat->getId() .'">'
                         .'<td>'
-                        //.'<input type="text" class="catAttr input-comptes" data-l1key="image" value="'
-                        //.$cat->getImage()
                         //.'"/>'
                         .'<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="' . $cat->getId() .'" ><i class="fas fa-flag"></i> {{Choisir}}</a>'
                         .'</td><td>'
                         .'<input type="color" data-cat_id="' . $cat->getId() .'" class="catAttr form-control" data-l1key="image" data-l2key="tagColor" value="'.$cat->getImage('tagColor').'" /></td><td>';
-                        //echo '<img  src="plugins/comptes/images/categories/' . $cat->getImage() . '" height="40" width="40" data-cat_id="' . $cat->getId() .'" ';
-                        /*if ($cat->getImage() == '') {
-                            //echo 'style="display: none;"';
-                        }*/
                         
                         //echo '/>';
                         echo '<input type="color" data-cat_id="' . $cat->getId() .'" class="catAttr form-control" data-l1key="image" data-l2key="tagTextColor" value="'.$cat->getImage('tagTextColor').'"/></td>'
@@ -604,9 +596,7 @@ include_file('3rdparty', 'd3-master/d3', 'js', 'comptes');
 include_file('3rdparty', 'd3-master/d3.min', 'js', 'comptes'); 
 include_file('3rdparty', 'd3-master/d3pie.min', 'js', 'comptes'); 
 include_file('3rdparty', 'c3/c3.min', 'js', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/js/bootstrap-select', 'js', 'comptes'); 
 include_file('3rdparty', 'rightClick/jquery.rightClick', 'js', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/js/bootstrap-select.min', 'js', 'comptes'); 
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js', 'comptes'); 
 include_file('desktop', 'panel', 'js', 'comptes');
 include_file('core', 'plugin.template', 'js');

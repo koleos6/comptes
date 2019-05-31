@@ -90,8 +90,8 @@ $result_3 = DB::Prepare($sql, $values_3, DB::FETCH_TYPE_ROW);
 $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
 
 
-	$plugincomptesdir = dirname(__FILE__) . '/../../../core/css/icon/plugin-comptes';
-	$pluginfontdir = dirname(__FILE__) . '/../../../core/css/icon/plugin-comptes/fonts';
+	$plugincomptesdir = dirname(__FILE__) . '/../../../data/fonts/plugin-comptes';
+	$pluginfontdir = dirname(__FILE__) . '/../../../data/fonts/plugin-comptes/fonts';
 	
 	if (!file_exists($plugincomptesdir)) {
 		$result = mkdir($plugincomptesdir, 0777, true);
