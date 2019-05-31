@@ -303,7 +303,7 @@ class comptes extends eqLogic {
     }
 
     public function postRemove() {
-        //TODO: supprimer les fonts installées
+       
     }
 	
 	public function getOperations() {
