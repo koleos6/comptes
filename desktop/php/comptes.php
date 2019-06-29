@@ -9,19 +9,19 @@ $eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 <div class="row row-overflow">
-    <div class="col-lg-12 eqLogicThumbnailDisplay">
+    <div class="col-xs-12 eqLogicThumbnailDisplay">
         <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
         <div class="eqLogicThumbnailContainer">
+			<div class="cursor eqLogicAction ComptesColor" data-action="add"  >
+                <i class="fas fa-plus-circle"></i>
+                <br/>
+                <span class="ComptesColor">{{Ajouter}}</span>
+			</div>
             <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf" >
                 <i class="fas fa-wrench"></i>
                 <br/>
                 <span>{{Configuration}}</span>
             </div>
-			<div class="cursor eqLogicAction logoPrimary" data-action="add"  >
-                <i class="fas fa-plus-circle" style="color:#fcc505;"></i>
-                <br/>
-                <span style="color:#fcc505;">{{Ajouter}}</span>
-			</div>
         </div>
         <legend><i class="fas fa-table"></i>  {{Liste des comptes}}</legend>
         <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
@@ -30,24 +30,20 @@ $eqLogics = eqLogic::byType($plugin->getId());
         if (count($eqLogics) == 0) {
             echo "<br/><br/><br/><center><span style='color:#fcc505;font-size:1.2em;font-weight: bold;'>{{Vous n'avez pas encore créé de compte, cliquez sur le plus pour ajouter un compte.}}</span></center>";
         } else {
-            ?>
-            
-            
-                <?php
-                foreach ($eqLogics as $eqLogic) {
-					
-					$opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
-                    echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '" >';
-                    echo '<img class=lazy" src="plugins/comptes/plugin_info/comptes_icon.png" height="105" width="95" />';
-                    echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
-                    echo '</div>';
-                }
-                ?>
-            </div>
+            foreach ($eqLogics as $eqLogic) {
+                $opacity = ($eqLogic->getIsEnable()) ? '' : 'disableCard';
+                echo '<div class="eqLogicDisplayCard cursor '.$opacity.'" data-eqLogic_id="' . $eqLogic->getId() . '">';
+                echo '<img src="' . $plugin->getPathImgIcon() . '"/>';
+                echo '<br>';
+                echo '<span class="name">' . $eqLogic->getHumanName(true, true) . '</span>';
+                echo '</div>';
+            }
+        ?>
+        </div>
         <?php } ?>
     </div>
 	
-    <div class="col-lg-12 eqLogic" style="display: none;">
+    <div class="col-xs-12 eqLogic" style="display: none;">
         <div class="input-group pull-right" style="display:inline-flex">
 			<span class="input-group-btn">
 				<a class="btn btn-default btn-sm eqLogicAction roundedLeft" data-action="configure"><i class="fas fa-cogs"></i> {{Configuration avancée}}</a>
