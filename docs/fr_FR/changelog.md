@@ -1,3 +1,6 @@
+# xx/06/2019 - V1.4
+- Migration pour Jeedom v4
+
 # 13/01/2018 - V1.3
 - Ajout d'une fonction de recherche d'opération dans un compte
 - Modification de l'ordre d'affichage: passage de par id à par date de valeur

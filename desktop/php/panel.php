@@ -3,7 +3,7 @@ if (!isConnect()) {
     throw new Exception('{{401 - Accès non autorisé}}');
 }
 
-include_file('desktop', 'comptes_icons', 'css', 'comptes'); 
+
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css', 'comptes');
 include_file('desktop', 'panel', 'css', 'comptes'); 
 include_file('3rdparty', 'c3/c3', 'css', 'comptes'); 
