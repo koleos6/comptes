@@ -171,7 +171,8 @@
         "Ajouter une commande": "Ajouter une commande",
         "Nom": "Nom",
         "Email": "Email",
-        "Action": "Action"
+        "Action": "Action",
+        "Comptes": "Comptes"
     },
     "plugins\/comptes\/core\/ajax\/comptes.ajax.php": {
         "{{Aucune opération correspondant à : ": "{{Aucune opération correspondant à : "
