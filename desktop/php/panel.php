@@ -22,14 +22,15 @@ $allCats = comptes_categories::all();
 <div id="md_modalComptes4"></div>
 
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;" id="bt_displayComptes"><i class="far fa-arrow-alt-circle-right" ></i></div>
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;" id="bt_displayComptes">
+<!--<i class="far fa-arrow-alt-circle-right" ></i>--></div>
 
 
 <div class="row row-overflow">
 	<!-- Partie menu gauche -->
     <!-- core V4 TODO: a supprimer ? attention aux données stockées ? -->
     
-	<div class="col-lg-2 col-md-3 col-sm-4" id="sd_ComptesList" style="z-index:999">
+	<div class="col-lg-2 col-md-3 col-sm-4" id="sd_ComptesList" style="z-index:999;display:none">
         <div class="bs-sidebar">
             <!-- <ul id="ul_comptes" class="nav nav-list bs-sidenav"> -->
             <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">   

@@ -443,10 +443,7 @@ $('.itemAccount').on('click', function (event) {
                 $('.bt_configurationBank').attr('data-eqLogic_id',data.eqLogic_id);
                 $('.bt_configurationBank').on('click',function(){
                     $('#md_modal').dialog({title: "{{Configuration du compte}}"});
-                    $("#md_modal").load('index.php?v=d&m=comptes&p=comptes&ajax=1&id='+$(this).attr('data-eqLogic_id')).dialog('open');
-                    
-                    
-                    
+                    $("#md_modal").load('index.php?v=d&m=comptes&p=comptes&ajax=1&id='+$(this).attr('data-eqLogic_id')).dialog('open'); 
                 });
                 //FIN
 				
@@ -875,11 +872,11 @@ function add_new_op_in_div(data) {
                         //action spécifique en fonction du type de pointage
                         if (cchecked == 1) {
                             cchecked = 0;
-                            $('i.fa.fa-check[data-op_id='+ cid +']').css('color', 'red');
+                            $('i.fas.fa-check[data-op_id='+ cid +']').css('color', 'red');
                         }
                         else {
                             cchecked = 1;
-                            $('i.fa.fa-check[data-op_id='+ cid +']').css('color', 'green');
+                            $('i.fas.fa-check[data-op_id='+ cid +']').css('color', 'green');
                         }
                         $('a[data-l1key=Checked][data-op_id='+ cid +']').attr('data-op_checked',cchecked);
                         
