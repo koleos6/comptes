@@ -4,8 +4,6 @@ if (!isConnect()) {
 }
 
 
-include_file('3rdparty', 'bootstrap-select/dist/css/bootstrap-select', 'css', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/css/bootstrap-select.min', 'css', 'comptes'); 
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'css', 'comptes');
 include_file('desktop', 'panel', 'css', 'comptes'); 
 include_file('3rdparty', 'c3/c3', 'css', 'comptes'); 
@@ -23,14 +21,19 @@ $allCats = comptes_categories::all();
 <div id="md_modalComptes3"></div>
 <div id="md_modalComptes4"></div>
 
-<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;background-color:#f6f6f6;" id="bt_displayComptes"><i class="fa fa-arrow-circle-o-right" style="color : #b6b6b6;"></i></div>
 
-<div class="row row-overflow" id="div_comptes" >
+<div style="position : fixed;height:100%;width:15px;top:50px;left:0px;z-index:998;" id="bt_displayComptes">
+<!--<i class="far fa-arrow-alt-circle-right" ></i>--></div>
+
+
+<div class="row row-overflow">
 	<!-- Partie menu gauche -->
-	<div class="col-lg-2" id="sd_ComptesList" style="z-index:999">
+    <!-- core V4 TODO: a supprimer ? attention aux données stockées ? -->
+    
+	<div class="col-lg-2 col-md-3 col-sm-4" id="sd_ComptesList" style="z-index:999;display:none">
         <div class="bs-sidebar">
-            <ul id="ul_comptes" class="nav nav-list ">
-                
+            <!-- <ul id="ul_comptes" class="nav nav-list bs-sidenav"> -->
+            <ul id="ul_eqLogic" class="nav nav-list bs-sidenav">   
 				<legend><center>{{Mes Comptes Actifs}}</center></legend>
                 
                 <!--<table class="table-hover comptes_list">-->
@@ -59,7 +62,7 @@ $allCats = comptes_categories::all();
 							$minilogo = $bank->getLogo_mini_name();
 						}
                         //echo '<tr>';
-						echo '<li class="cursor compte_menu_item itemAccount" data-eqLogic_id="' . $eqLogic->getId() . '" data-soldereel="'. $eqLogic->computeSolde() .'" data-apointer="'. $eqLogic->computeAPointer() .'" data-soldefinmois="'. $eqLogic->computeSoldeFinDeMois() .'" data-color-obj="' . $color .'" data-bt_APointer="' . $bt_APointer .'" data-bt_Pointer="' . $bt_Pointer .'"data-color-obj-text="' .$color_obj_text .'" data-name="' . $name .'" data-devise="' . $devise .'" data-minilogo="' . $minilogo .'" data-optPointage="' . $OptionPointage .'" data-optType="' . $OptionType .'" data-optDateUnique="' . $OptionDateUnique . '">';
+						echo '<li class="cursor compte_menu_item itemAccount li_eqLogic" data-eqLogic_id="' . $eqLogic->getId() . '" data-soldereel="'. $eqLogic->computeSolde() .'" data-apointer="'. $eqLogic->computeAPointer() .'" data-soldefinmois="'. $eqLogic->computeSoldeFinDeMois() .'" data-color-obj="' . $color .'" data-bt_APointer="' . $bt_APointer .'" data-bt_Pointer="' . $bt_Pointer .'"data-color-obj-text="' .$color_obj_text .'" data-name="' . $name .'" data-devise="' . $devise .'" data-minilogo="' . $minilogo .'" data-optPointage="' . $OptionPointage .'" data-optType="' . $OptionType .'" data-optDateUnique="' . $OptionDateUnique . '">';
 						//echo '<li class="cursor li_eqLogic compte_menu_item" data-eqLogic_id="' . $eqLogic->getId() . '">';
 						echo '<a>';
 						echo '<span class="label_cpt_obj" style="text-shadow : none;background-color:'. $color .';color:' . $color_obj_text .';">';
@@ -84,15 +87,18 @@ $allCats = comptes_categories::all();
 
             </ul>
 			<br />
-			<center>
+            <!--
+			
 			<legend></legend>
+            
+            -->
 			<!--
 			
 			<form class="form-horizontal" method="post" enctype="multipart/form-data">
 			<fieldset>
 			 <div class="form-group form-group-sm">
 									<span id="bt_downloadOperations"  class="form-control btn-primary fileinput-button">
-                                        <i class="fa fa-download"></i>
+                                        <i class="fas fa-download"></i>
                                         <input class="form-control" type="file" id="bt_downloadOperationsInput" name="CsvOps" data-url="plugins/widget/core/ajax/widget.ajax.php?action=fontUpload"/>
                                     </span>
 			 </div>
@@ -103,7 +109,15 @@ $allCats = comptes_categories::all();
 			margin-bottom : 10px;
 			margin-left : 10px;
 			-->
-			<div class="col-lg-2 col-md-3 col-sm-4 eqLogicThumbnailContainer" style="width : 500px;">
+			<div class="col-lg-2 col-md-3 col-sm-4" style="width:250px;">
+            <center>
+                <i class="plugin-comptes-dircats bt_ManageCat" style="font-size : 3em;color:#C266C2;" data-toggle="tooltip" title="{{Gestion des catégories}}"></i>
+                <i class="plugin-comptes-vir-auto bt_ManageVirementsAuto" style="font-size : 3em;color:#767676;margin-left:20px;" data-toggle="tooltip" title="{{Gestion des virements automatiques}}"></i>
+                <i class="plugin-comptes-double-fleche bt_VirBank" style="font-size : 3em;color:#3399FF;margin-left:10px;" data-toggle="tooltip" title="{{Virement Banque à Banque}}"></i>
+                <i class="plugin-comptes-stats1 bt_RefreshGraph" style="font-size : 3em;color:#767676;margin-left:10px;" data-toggle="tooltip" title="{{Forcer la mise à jour des historiques}}"></i>
+            </center>
+            </div>
+            <!--
 			<div class="cursor bt_ManageCat" style="margin-left : -15px;margin-top:-15px;height : 60px;padding : 5px;border-radius: 2px;width : 60px;" >
 				<center>
 					<i class="plugin-comptes-dircats" style="font-size : 3em;color:#C266C2;" data-toggle="tooltip" title="{{Gestion des catégories}}"></i>
@@ -134,13 +148,13 @@ $allCats = comptes_categories::all();
 			<!--
 
 			-->
-			</div>
-			</center>
+			
 		<br />
 		<!--
-			<a id="bt_testCron" class="btn btn-primary" data-default-id="" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fa techno-fleches"></i> {{Test}}</a>
-			<br />-->
-			<legend></legend>
+			<a id="bt_testCron" class="btn btn-primary" data-default-id="" style="width : 100%;margin-top : 5px;margin-bottom: 5px;"><i class="fas techno-fleches"></i> {{Test}}</a>
+			<br />
+            <legend></legend>-->
+			
 			<br />
 			<!--
 			<ul id="ul_infos_comptes" class="nav nav-list " style="display:none">
@@ -162,8 +176,9 @@ $allCats = comptes_categories::all();
 			</div>
     </div>
 	<!-- Partie Page d'acceuil -->
-	<div class="col-lg-10" id="comptes_msg_debut" style="border-left: solid 1px #EEE; padding-left: 25px;">
-        <legend><i class="fa fa-cog"></i>  {{Gestion}}</legend>
+    <div class="col-lg-10 col-md-9 col-sm-8 eqLogicThumbnailDisplay" id="comptes_msg_debut" >
+	<!--<div class="col-lg-10" id="comptes_msg_debut" style="border-left: solid 1px #EEE; padding-left: 25px;">-->
+        <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
 		<div class="eqLogicThumbnailContainer">
 			<div class="cursor bt_ManageCat" style="background-color : #ffffff; height : 140px;margin-bottom : 10px;padding : 5px;border-radius: 2px;width : 160px;margin-left : 10px;" >
 				<center>
@@ -198,7 +213,7 @@ $allCats = comptes_categories::all();
 			</div>
             -->
 		</div>
-		<legend><i class="fa fa-table"></i>  {{Mes Comptes Actifs}}</legend>
+		<legend><i class="fas fa-table"></i>  {{Mes Comptes Actifs}}</legend>
 		<div class="eqLogicThumbnailContainer">
 		<?php
 			foreach ($eqLogics as $eqLogic) {
@@ -245,18 +260,17 @@ $allCats = comptes_categories::all();
     
     
 	<!-- Partie Gestion des opérations d'un compte -->
-	<div  class="col-lg-9" id="comptes_operations" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0 data-search="">
-		<legend class="cpt_legend">
-		<div class="HeaderContainer">
+	<div  class="col-lg-9" id="comptes_operations" style="display:none;" data-eqLogic_id="" data-last_id="" data-devise="" data-opidforcatsel="" data-catidforcatselfocus="" data-mode=0 data-filterCatId=0 data-search="">
+		<div class="HeaderContainer cpt_legend">
 			<div class="CptTitle">
 			
-			<span  class="label_cpt_obj2" ><i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> <span id="cpt_obj"  ></span> - <span id="cpt_title"></span>&nbsp;</span>
-			<div style="float:right" ><i class="fa fa-search bt_search cursor"></i>&nbsp;<i class="fa fa-filter bt_filterCat cursor"></i>&nbsp;<i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
+			<span  class="label_cpt_obj2" ><i class="fas fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> <span id="cpt_obj"  ></span> - <span id="cpt_title"></span>&nbsp;</span>
+			<div style="float:right" ><i class="fas fa-search bt_search cursor"></i>&nbsp;<i class="fas fa-filter bt_filterCat cursor"></i>&nbsp;<i class="fas fa-cogs bt_configurationBank cursor" data-eqLogic_id=""></i>&nbsp;<img id="cpt_bank" /></div>
 			</div>
 			<div>
                 
 				<div class = "CptNewOp cursor tooltips" title="{{Ajouter une opération}}">
-					<i class="fa fa-plus-circle " ></i>
+					<i class="fas fa-plus-circle " ></i>
 				</div>
 				<div class= "CptNewOpModal" style="display:none"> 
 					<form class="form-horizontal" style="margin-top:10px;">
@@ -275,7 +289,7 @@ $allCats = comptes_categories::all();
 						 </div>
 						 <div class="form-group form-group-sm">
 							<label class="col-md-5 control-label">{{Catégorie}}</label>
-							<div class="col-md-7" style="height:30px;font-size: 14px;">
+							<div class="col-md-7" style="height:40px;font-size: 14px;">
 								<input type="text" class="opAttr form-control" data-l1key="CatId" data-op_id="0" style="display: none;" value="0" />	
 								<div style="float:left;margin-left:5px">
 									<div class="image_cat_new" data-op_id="0" style="font-size : 2em;color:#FFF;border-radius: 5px 5px 5px 5px ;width:40px;height:40px;text-align:center;vertical-align:middle;background-color:#c266c2;" ><i class="icon plugin-comptes-billets1"></i></div>
@@ -292,12 +306,12 @@ $allCats = comptes_categories::all();
 						 </div>
 						 <div id="NewOpOptionType" class="form-group form-group-sm">
 							<label class="col-md-5 control-label">{{Type}}</label>
-							<div class="col-md-7">
-								<select class="opAttr selectpicker" data-style="btn-primary" data-l1key="Type" data-width="65%">
+							<div class="col-md-5">
+								<select class="opAttr form-control" data-style="btn-primary" data-l1key="Type" data-width="65%">
 									<option value=0 >{{Aucun}}</option>
-									<option value=1 data-icon="fa fa-credit-card">{{Carte}}</option>
-									<option value=2 data-icon="fa fa-money">{{Chèque}}</option>
-									<option value=3 data-icon="fa techno-fleches">{{Virement}}</option>
+									<option value=1 data-icon="fas fa-credit-card">{{Carte}}</option>
+									<option value=2 data-icon="fas fa-money">{{Chèque}}</option>
+									<option value=3 data-icon="fas techno-fleches">{{Virement}}</option>
 								</select>
 							</div>
 						 </div>
@@ -317,7 +331,7 @@ $allCats = comptes_categories::all();
 						 </div>
 						 <div class="form-group form-group-sm">
 							<div class="col-lg-9 control-label">
-								<a class="btn btn-primary add_op"><i class="fa fa-plus-circle"></i> {{Ajouter l'opération}}</a>
+								<a class="btn btn-primary add_op"><i class="fas fa-plus-circle"></i> {{Ajouter l'opération}}</a>
 							</div>
 						</div>
 						<input type="text" class="opAttr " data-l1key="hide" style="display: none;" value ="0" />
@@ -329,13 +343,12 @@ $allCats = comptes_categories::all();
                 <div class="CptSearchModal" style="display:none">
                     <span class="label_cpt_obj2" > 
                     <div class="col-md-7" style="margin-top:15px"> <input class="form-control input-sm searchField" placeholder="{{Rechercher}}" ></div>
-                    <div class="col-md-1"><i class="fa fa-search bt_LaunchSearch cursor"></i></div>
+                    <div class="col-md-1"><i class="fas fa-search bt_LaunchSearch cursor"></i></div>
                     </span>
                 </div>
 			</div>
 		</div>
 
-		</legend>
 		<div class="row">
 		
 			<div id='div_eventOpAlert' style="display: none;"></div>
@@ -344,7 +357,7 @@ $allCats = comptes_categories::all();
 			<div class="opContainer" class="">
 			</div>
         -->
-			<table id="table_op" class="">
+			<table id="table_op" class="" style="margin-left:10px">
                 
                 <tbody>
 
@@ -361,21 +374,21 @@ $allCats = comptes_categories::all();
 		<span class="badge tooltips" title="{{Solde Réel}}" style="background-color : #fcc505;font-size: 30px;min-width:180px">
 			<span id="solde_reel" ></span> <span class="affDevise" ></span>			
 		</span>
-        <div id="FinDeMoisAffichage">
+        <div id="FinDeMoisAffichage" style="margin-top:10px">
             <span class="badge tooltips" title="{{Solde à la fin du mois}}" style="background-color : #fcc505;"> 
-                Fin de mois: <span id="solde_fin_mois"></span> <span class="affDevise" ></span>
+                {{Fin de mois: }}<span id="solde_fin_mois"></span> <span class="affDevise" ></span>
             </span> 
         </div>
-		<div><i id="refreshAmounts" class="fa fa-refresh"> </i> </div>
+		<div><i id="refreshAmounts" class="fas fa-refresh"> </i> </div>
 		</center>
 		
 		<br />
 		<br />
 		<center>
-		<legend>{{Graphiques}}</legend>
-			<a class="move_date_left"><i class="fa fa-chevron-left"></i></a>
+		<legend><center>{{Graphiques}}</center></legend>
+			<a class="move_date_left"><i class="fas fa-chevron-left"></i></a>
 			<span id="chart_title" data-date-pie-chart="<?php echo date('Y-m-01', strtotime('now'))?>"></span>
-			<a class="move_date_right" style="display:none"><i class="fa fa-chevron-right"></i></a>
+			<a class="move_date_right" style="display:none"><i class="fas fa-chevron-right"></i></a>
 		</center>
 		<center><div id="chart_comptes_1"></div></center>
 		<center><div id="chart_comptes_2"></div></center>
@@ -399,18 +412,16 @@ $allCats = comptes_categories::all();
 </div>
 	
 	<!-- Partie Gestion des catégories -->
-	<div  class="col-lg-10" id="comptes_categories" style="padding-right:25px;border-left: solid 1px #EEE; padding-left: 25px;display:none;">
+	<div  class="col-lg-10" id="comptes_categories" style="display:none;">
 	<form class="form-horizontal">
         <fieldset>
 			<legend>
-			<center>
-			<i class="fa fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> {{Gestion des catégories}}
-			</center>
+			<i class="fas fa-arrow-circle-left eqLogicAction cursor" data-action="returnToThumbnailDisplay"></i> {{Gestion des catégories}}
 			</legend>
 		
-			<table id="ul_Gestcat" class="table table-bordered table-hover table_cat table-bordered-comptes">
-			<thead>
-				<tr class="bg-primary">
+			<table id="ul_Gestcat" class="table table-condensed table-hover ">
+			<thead >
+				<tr class="table-primary"> 
 					<th style="width: 60px;">{{Icone}}</th>
 					<th style="width: 55px;">{{Couleur fond}}</th>
 					<th style="width: 55px;">{{Couleur icone}}</th>
@@ -426,7 +437,7 @@ $allCats = comptes_categories::all();
 					<!--
 						<input type="text" id="img_new" class="catAttr input-comptes-new " data-l1key="image" />
 					-->
-					<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="0"><i class="fa fa-flag"></i> {{Choisir}}</a>
+					<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="0"><i class="fas fa-flag"></i> {{Choisir}}</a>
 					</td>
 					<td><input type="color" data-cat_id="0" class="catAttr form-control" data-l1key="image" data-l2key="tagColor" value="#c266c2" /></td>
 					<td><input type="color" data-cat_id="0" class="catAttr form-control" data-l1key="image" data-l2key="tagTextColor" value="#ffffff" /></td>
@@ -440,7 +451,7 @@ $allCats = comptes_categories::all();
 					<td>
 						<center>
 						<input type="text" class="catAttr form-control " data-l1key="id" style="display: none;" value="0" />
-						<a class="btn btn-primary add_cat" ><i class="fa fa-plus"></i></a>
+						<a class="btn btn-primary add_cat" ><i class="fas fa-plus"></i></a>
 						</center>
 					</td>
 				</tr>
@@ -452,16 +463,10 @@ $allCats = comptes_categories::all();
                         
                         echo '<tr class="li_cat bt_sortable" data-cat_id="' . $cat->getId() .'">'
                         .'<td>'
-                        //.'<input type="text" class="catAttr input-comptes" data-l1key="image" value="'
-                        //.$cat->getImage()
                         //.'"/>'
-                        .'<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="' . $cat->getId() .'" ><i class="fa fa-flag"></i> {{Choisir}}</a>'
+                        .'<a class="catAction btn btn-default btn-sm btn-cat" data-cat_id="' . $cat->getId() .'" ><i class="fas fa-flag"></i> {{Choisir}}</a>'
                         .'</td><td>'
                         .'<input type="color" data-cat_id="' . $cat->getId() .'" class="catAttr form-control" data-l1key="image" data-l2key="tagColor" value="'.$cat->getImage('tagColor').'" /></td><td>';
-                        //echo '<img  src="plugins/comptes/images/categories/' . $cat->getImage() . '" height="40" width="40" data-cat_id="' . $cat->getId() .'" ';
-                        /*if ($cat->getImage() == '') {
-                            //echo 'style="display: none;"';
-                        }*/
                         
                         //echo '/>';
                         echo '<input type="color" data-cat_id="' . $cat->getId() .'" class="catAttr form-control" data-l1key="image" data-l2key="tagTextColor" value="'.$cat->getImage('tagTextColor').'"/></td>'
@@ -494,19 +499,19 @@ $allCats = comptes_categories::all();
                         echo $cat->getId();
                         echo '">';
                         if ($pn) {
-                            echo '<a class="btn btn-success move_cat_up"><i class="fa fa-chevron-left"></i></a>';
+                            echo '<a class="btn btn-success move_cat_up"><i class="fas fa-chevron-left"></i></a>';
                         
                         } else {
-                            echo '<a class="btn btn-success move_cat_up" style="display:none"><i class="fa fa-chevron-left"></i></a>';
+                            echo '<a class="btn btn-success move_cat_up" style="display:none"><i class="fas fa-chevron-left"></i></a>';
                         }
                         echo '</td><td class="level_aff"  style="width: 20px;">';
                         echo $cat->getLevel();
                         echo '</td><td style="width: 50px;">';
                         //if ($cat->getPosition() > 1) {
-                            echo '<a class="btn btn-success move_cat_down"><i class="fa fa-chevron-right"></i></a></td>';
+                            echo '<a class="btn btn-success move_cat_down"><i class="fas fa-chevron-right"></i></a></td>';
                         //}
                         echo '<td>';
-                        echo '<a class="btn btn-danger supp_cat"><i class="fa fa-trash-o"></i></a>';
+                        echo '<a class="btn btn-danger supp_cat"><i class="far fa-trash-alt"></i></a>';
                         
                         echo '<input type="text" class="catAttr input-comptes" data-l1key="id" style="display: none;" value="';
                         echo $cat->getId();
@@ -592,9 +597,7 @@ include_file('3rdparty', 'd3-master/d3', 'js', 'comptes');
 include_file('3rdparty', 'd3-master/d3.min', 'js', 'comptes'); 
 include_file('3rdparty', 'd3-master/d3pie.min', 'js', 'comptes'); 
 include_file('3rdparty', 'c3/c3.min', 'js', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/js/bootstrap-select', 'js', 'comptes'); 
 include_file('3rdparty', 'rightClick/jquery.rightClick', 'js', 'comptes'); 
-include_file('3rdparty', 'bootstrap-select/dist/js/bootstrap-select.min', 'js', 'comptes'); 
 include_file('3rdparty', 'datetimepicker/jquery.datetimepicker', 'js', 'comptes'); 
 include_file('desktop', 'panel', 'js', 'comptes');
 include_file('core', 'plugin.template', 'js');

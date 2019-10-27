@@ -90,8 +90,8 @@ $result_3 = DB::Prepare($sql, $values_3, DB::FETCH_TYPE_ROW);
 $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
 
 
-	$plugincomptesdir = dirname(__FILE__) . '/../../../core/css/icon/plugin-comptes';
-	$pluginfontdir = dirname(__FILE__) . '/../../../core/css/icon/plugin-comptes/fonts';
+	$plugincomptesdir = dirname(__FILE__) . '/../../../data/fonts/plugin-comptes';
+	$pluginfontdir = dirname(__FILE__) . '/../../../data/fonts/plugin-comptes/fonts';
 	
 	if (!file_exists($plugincomptesdir)) {
 		$result = mkdir($plugincomptesdir, 0777, true);
@@ -99,15 +99,21 @@ $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
 	if (!file_exists($pluginfontdir)) {
 		$result = mkdir($pluginfontdir, 0777, true);
 	}
+    
 	if (!file_exists($plugincomptesdir.'/style.css')) {
 		$status=copy(dirname(__FILE__).'/fonts/style.css',$plugincomptesdir.'/style.css'); 
 	}
 	if (!file_exists($pluginfontdir.'/plugin-comptes.ttf')) {
 		$status=copy(dirname(__FILE__).'/fonts/plugin-comptes.ttf',$pluginfontdir.'/plugin-comptes.ttf'); 
 	}
-	
-	
-?>
+    if (!file_exists($pluginfontdir.'/plugin-comptes.svg')) {
+		$status=copy(dirname(__FILE__).'/fonts/plugin-comptes.svg',$pluginfontdir.'/plugin-comptes.svg'); 
+	}
+    if (!file_exists($pluginfontdir.'/plugin-comptes.woff')) {
+		$status=copy(dirname(__FILE__).'/fonts/plugin-comptes.woff',$pluginfontdir.'/plugin-comptes.woff'); 
+	}
+
+   ?>
 <form class="form-horizontal">
     <fieldset>
 		<div class="form-group">
@@ -127,7 +133,7 @@ $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
             </div>
             <div class="col-sm-6">
                 <div class="form-actions">
-                    <a class="btn btn-block btn-primary " id="comptes_table_creation_cat"><i class="fa fa-download"></i> {{Import des catégories proposées par défaut}}</a>
+                    <a class="btn btn-block btn-primary " id="comptes_table_creation_cat"><i class="fas fa-download"></i> {{Import des catégories proposées par défaut}}</a>
                 </div>
             </div>
 		</div>
@@ -158,7 +164,7 @@ $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
 							<input type="text" class="bankAttr form-control" data-l1key="logo_mini_name" />
 						</td>
 						<td class="">
-							<a class="btn btn-primary add_bank form-control" ><i class="fa fa-plus"></i></a>
+							<a class="btn btn-primary add_bank form-control" ><i class="fas fa-plus"></i></a>
 							<input type="hidden" class="bankAttr form-control" data-l1key="id" value="0" />
 						</td>
 					</tr>
@@ -168,7 +174,7 @@ $result_4 = DB::Prepare($sql, $values_4, DB::FETCH_TYPE_ROW);
 					echo '<td><input type="text" class="bankAttr form-control " data-l1key="name" value="' . $bank_info->getName() . '"/></td>';
 					echo '<td><input type="text" class="bankAttr form-control " data-l1key="logo_name" value="' . $bank_info->getLogo_name() . '"/></td>';
 					echo '<td><input type="text" class="bankAttr form-control " data-l1key="logo_mini_name" value="' . $bank_info->getLogo_mini_name() . '"/></td>';
-					echo '<td><a class="btn btn-danger supp_bank"><i class="fa fa-trash-o"></i></a>';
+					echo '<td><a class="btn btn-danger supp_bank"><i class="far fa-trash-alt"></i></a>';
 					echo '<input type="hidden" class="bankAttr form-control" data-l1key="id" value="' . $bank_info->getId() . '" />';
 					echo '</td>';
 					echo '</tr>';

@@ -24,6 +24,6 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
  * 
  */
  
-
- 
+ //echo '<link rel="stylesheet" href="plugins/comptes/fonts/style.css">' . "\n";
+ //log::add('comptes', 'debug', dirname(__FILE__) . '/../fonts/style.css');
 ?>

@@ -303,7 +303,7 @@ class comptes extends eqLogic {
     }
 
     public function postRemove() {
-        //TODO: supprimer les fonts installées
+       
     }
 	
 	public function getOperations() {
@@ -316,14 +316,16 @@ class comptes extends eqLogic {
      * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin
      */ 
 	public function toHtml($_version = 'dashboard') {
-		if ($this->getIsEnable() != 1) {
+
+        if ($this->getIsEnable() != 1) {
 			return '';
 		}
-		$_version = jeedom::versionAlias($_version);
-		$mc = cache::byKey('nestWidget' . $_version . $this->getId());
-		if ($mc->getValue() != '') {
-			return $mc->getValue();
+		$replace = $this->preToHtml($_version);
+		if (!is_array($replace)) {
+			return $replace;
 		}
+		$version = jeedom::versionAlias($_version);
+        
         
         if ($this->getConfiguration('ActivationPointage') == 1) {
             $solde_apointer= "(";
@@ -336,20 +338,28 @@ class comptes extends eqLogic {
             $solde_apointer="";
             $hidden="hidden";
         }
-        
+        $replace['#SoldeMsg#'] = "";
+        $replace['#EndMonthMsg#'] = "Fin de mois: ";
+        $replace['#solde_reel#'] = $this->computeSolde();
+        $replace['#solde_findemois#'] = $this->computeSoldeFinDeMois();
+        $replace['#solde_apointer#'] = $solde_apointer;
+        $replace['#devise#'] = $this->getConfiguration("currency");
+        $replace['#eqLink#'] = $this->getLinkToComptes();
+        /*
 		$replace = array(
-			'#id#' => $this->getId(),
+			//'#id#' => $this->getId(),
             '#SoldeMsg#' => "", 
             '#hidden#' => $hidden, 
             '#EndMonthMsg#' => "Fin de mois: ", 
-			'#name#' => ($this->getIsEnable()) ? $this->getName() : '<del>' . $this->getName() . '</del>',
-            '#eqLink#' => $this->getLinkToComptes(),
+			//'#name#' => ($this->getIsEnable()) ? $this->getName() : '<del>' . $this->getName() . '</del>',
+            //'#eqLink#' => $this->getLinkToComptes(),
 			'#solde_reel#' => $this->computeSolde(),
 			'#solde_findemois#' => $this->computeSoldeFinDeMois(),
             '#solde_apointer#' => $solde_apointer,
 			'#devise#' => $this->getConfiguration("currency"),
-			'#background_color#' => $this->getBackgroundColor(jeedom::versionAlias($_version)),
+			//'#background_color#' => $this->getBackgroundColor(jeedom::versionAlias($_version)),
         );
+        */
 		return template_replace($replace, getTemplate('core', jeedom::versionAlias($_version), 'comptes', 'comptes'));			
     }
      

@@ -3,7 +3,7 @@
 	"name" : "Comptes",
 	"licence" : "AGPL",
 	"author" : "Koleos",
-	"require" : "3.2",
+	"require" : "4.0",
 	"category" : "organization",
 	"display" : "panel",
 	"hasDependency" : false,

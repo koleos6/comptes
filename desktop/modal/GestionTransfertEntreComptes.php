@@ -57,7 +57,7 @@ $eqLogics = eqLogic::byType('comptes');
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Banque débitrice}}</label>
 					<div class="col-lg-7">
-						<select id="selectBankDebit" class="VirCompteAttr selectpicker " data-style="btn-primary" data-l1key="BankDebit" data-width="100%" >
+						<select id="selectBankDebit" class="VirCompteAttr form-control " data-style="btn-primary" data-l1key="BankDebit" data-width="100%" >
 						<?php
 				
 							foreach ($eqLogics as $eqLogic) {
@@ -71,7 +71,7 @@ $eqLogics = eqLogic::byType('comptes');
 				<div class="form-group">
 					<label class="col-sm-4 control-label">{{Banque créditrice}}</label>
 					<div class="col-lg-7">
-						<select id="selectBankCredit" class="VirCompteAttr selectpicker " data-style="btn-primary" data-l1key="BankCredit" data-width="100%" >
+						<select id="selectBankCredit" class="VirCompteAttr form-control " data-style="btn-primary" data-l1key="BankCredit" data-width="100%" >
 						<?php
 				
 							foreach ($eqLogics as $eqLogic) {
@@ -87,7 +87,7 @@ $eqLogics = eqLogic::byType('comptes');
 					<div class="col-lg-7" style="height:30px">
 						<input type="text" class="VirCompteAttr form-control" value="0" data-l1key="CatIdDebit" style="display : none;"  />
 						<!--
-						<div style="float:left"><a class="btn btn-primary bt_sel_cat_debit" data-eqLogic_id="" data-op_id=""><i class="fa fa-th-large"></i></a></div>
+						<div style="float:left"><a class="btn btn-primary bt_sel_cat_debit" data-eqLogic_id="" data-op_id=""><i class="fas fa-th-large"></i></a></div>
 						-->
 						<div style="float:left;margin-left:5px">
 						<!-- <img id="img_catDebit" data-img_name="" height="34" width="34" style="display:none"/>
@@ -102,7 +102,7 @@ $eqLogics = eqLogic::byType('comptes');
 					<div class="col-lg-7" style="height:30px">
 						<input type="text" class="VirCompteAttr form-control" value="0" data-l1key="CatIdCredit" style="display : none;"  />
 						<!-- 
-						<div style="float:left"><a class="btn btn-primary bt_sel_cat_credit" data-eqLogic_id="" data-op_id=""><i class="fa fa-th-large"></i></a></div>
+						<div style="float:left"><a class="btn btn-primary bt_sel_cat_credit" data-eqLogic_id="" data-op_id=""><i class="fas fa-th-large"></i></a></div>
 						-->
 						<div style="float:left;margin-left:5px">
 						<!-- <img id="img_catCredit" data-img_name="" height="34" width="34" style="display:none"/>
@@ -115,7 +115,7 @@ $eqLogics = eqLogic::byType('comptes');
 				</div>
 				<div class="form-actions">
 					<div class="col-lg-9 control-label">
-						<a class="btn btn-primary virCompteAction" data-action="add"><i class="fa fa-exchange"></i> {{Effectuer le transfert}}</a>
+						<a class="btn btn-primary virCompteAction" data-action="add"><i class="fas fa-exchange"></i> {{Effectuer le transfert}}</a>
 					</div>
 				</div>
 			</fieldset>
@@ -220,7 +220,7 @@ $('.image_catCredit').on('click', function () {
 
 
 
-$('.selectpicker').selectpicker();
+
 
 
 
